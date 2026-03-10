@@ -16,32 +16,31 @@ font-family:Arial, Helvetica, sans-serif;
 }
 
 body{
-background:#05010a;
+background:#07030f;
 color:white;
 overflow-x:hidden;
 }
 
-/* animated gradient background */
+/* animated glow background */
 
 body::before{
 content:"";
 position:fixed;
 width:200%;
 height:200%;
-background:radial-gradient(circle at 20% 30%, #6a00ff22, transparent),
-radial-gradient(circle at 80% 70%, #ff00ff22, transparent),
-radial-gradient(circle at 50% 50%, #0000ff22, transparent);
-animation:movebg 20s infinite linear;
+background:
+radial-gradient(circle at 20% 30%, #6a00ff22, transparent),
+radial-gradient(circle at 80% 60%, #ff00ff22, transparent),
+radial-gradient(circle at 50% 80%, #3b00ff22, transparent);
+animation:bgmove 25s infinite linear;
 z-index:-2;
 }
 
-@keyframes movebg{
+@keyframes bgmove{
 0%{transform:translate(0,0)}
 50%{transform:translate(-20%, -10%)}
 100%{transform:translate(0,0)}
 }
-
-/* stars */
 
 canvas{
 position:fixed;
@@ -54,19 +53,19 @@ z-index:-1;
 
 header{
 text-align:center;
-padding:100px 20px;
+padding:110px 20px 80px;
 }
 
 h1{
 font-size:4rem;
-letter-spacing:2px;
-text-shadow:0 0 20px #a855ff;
+letter-spacing:3px;
+text-shadow:0 0 25px #a855ff;
 }
 
 .tagline{
 margin-top:15px;
+color:#ccc;
 font-style:italic;
-color:#cfcfcf;
 }
 
 /* container */
@@ -81,17 +80,17 @@ padding:30px;
 
 .card{
 background:rgba(255,255,255,0.05);
+border:1px solid rgba(255,255,255,0.08);
 backdrop-filter:blur(12px);
-border:1px solid rgba(255,255,255,0.1);
 padding:35px;
-margin-bottom:25px;
 border-radius:18px;
-transition:0.4s;
+margin-bottom:25px;
+transition:0.35s;
 }
 
 .card:hover{
-transform:translateY(-8px) scale(1.02);
-box-shadow:0 0 30px rgba(170,80,255,0.3);
+transform:translateY(-8px);
+box-shadow:0 0 25px rgba(160,70,255,0.35);
 }
 
 h2{
@@ -99,14 +98,15 @@ margin-bottom:15px;
 color:#d8b4ff;
 }
 
-/* button */
+/* join button */
 
 .join{
 display:inline-block;
 margin-top:20px;
-padding:14px 28px;
+padding:16px 32px;
+font-size:1.1rem;
 background:linear-gradient(90deg,#7c3aed,#a855f7);
-border-radius:10px;
+border-radius:12px;
 text-decoration:none;
 color:white;
 font-weight:bold;
@@ -115,14 +115,14 @@ transition:0.3s;
 
 .join:hover{
 transform:scale(1.1);
-box-shadow:0 0 15px #a855ff;
+box-shadow:0 0 20px #a855ff;
 }
 
-/* music */
+/* playlist */
 
 audio{
-margin-top:15px;
 width:100%;
+margin-top:15px;
 }
 
 /* footer */
@@ -157,27 +157,43 @@ color:#999;
 <h2>The Community</h2>
 
 <p>
-Inspired by the legends and the music that gets us through it all,
-Jon Jon and Friends is a place for late-night world hopping,
-good music, and real conversations.
+This is a space for the real ones. Inspired by the legends and the music that gets us through it all,
+Jon Jon and Friends is a community built for good music, late-night world hopping, and genuine vibes.
 </p>
 
 <br>
 
 <p>
-Whether you're exploring worlds, talking about life,
-or just vibing, everyone here has a spot in the circle.
+Whether you're here to talk about life, blast some music, or explore worlds without drama —
+you're home.
 </p>
 
 </div>
 
 <div class="card">
 
-<h2>The Vibe</h2>
+<h2>The OVO Connection</h2>
+
+<p>
+From late-night vibes to emotional tracks, the playlist never stops.
+If you're here for the music, the memories, and the energy — you're in the right place.
+</p>
+
+<br>
+
+<p>
+"Just hold on, we're going home."
+</p>
+
+</div>
+
+<div class="card">
+
+<h2>Group Vitals</h2>
 
 <p><b>The Vibe:</b> 100% Chill & Melodic</p>
 <p><b>The Goal:</b> Linking up and making memories</p>
-<p><b>The Code:</b> 999 – turning negativity into something positive</p>
+<p><b>The Code:</b> 999 — turning negativity into something positive</p>
 
 </div>
 
@@ -189,22 +205,26 @@ or just vibing, everyone here has a spot in the circle.
 <source src="music.mp3" type="audio/mpeg">
 </audio>
 
-<p style="margin-top:10px;color:#aaa;">
-Upload your favorite track to play it here.
+<p style="color:#aaa;margin-top:10px;">
+Add your favorite track to the site to play it here.
 </p>
 
 </div>
 
 <div class="card">
 
-<h2>Join the Circle</h2>
+<h2>Join Our VRChat Group</h2>
 
 <p>
-Positive vibes only. Legends never die.
+Click the button below to open the official group page and join the community.
 </p>
 
-<a class="join" href="#">
-Join Us on VRChat
+<a class="join"
+href="https://vrchat.com/home/group/grp_e6ecca5a-828b-4706-9c23-db1723469436"
+target="_blank">
+
+Join Jon Jon and Friends on VRChat
+
 </a>
 
 </div>
@@ -213,13 +233,13 @@ Join Us on VRChat
 
 <footer>
 
-Jon Jon and Friends • VRChat Community
+Positive vibes only • Legends never die
 
 </footer>
 
 <script>
 
-/* star background */
+/* star animation */
 
 const canvas = document.getElementById("stars")
 const ctx = canvas.getContext("2d")
@@ -227,14 +247,14 @@ const ctx = canvas.getContext("2d")
 canvas.width = window.innerWidth
 canvas.height = window.innerHeight
 
-let stars = []
+let stars=[]
 
-for(let i=0;i<200;i++){
+for(let i=0;i<220;i++){
 stars.push({
 x:Math.random()*canvas.width,
 y:Math.random()*canvas.height,
 size:Math.random()*2,
-speed:Math.random()*0.3
+speed:Math.random()*0.4
 })
 }
 
@@ -245,10 +265,10 @@ ctx.clearRect(0,0,canvas.width,canvas.height)
 ctx.fillStyle="white"
 
 stars.forEach(s=>{
-s.y += s.speed
+s.y+=s.speed
 
-if(s.y > canvas.height){
-s.y = 0
+if(s.y>canvas.height){
+s.y=0
 }
 
 ctx.beginPath()
