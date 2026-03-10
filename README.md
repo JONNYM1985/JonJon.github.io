@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Jon Jon and Friends</title>
 
 <style>
@@ -15,10 +16,32 @@ font-family:Arial, Helvetica, sans-serif;
 }
 
 body{
-background:#050505;
+background:#05010a;
 color:white;
 overflow-x:hidden;
 }
+
+/* animated gradient background */
+
+body::before{
+content:"";
+position:fixed;
+width:200%;
+height:200%;
+background:radial-gradient(circle at 20% 30%, #6a00ff22, transparent),
+radial-gradient(circle at 80% 70%, #ff00ff22, transparent),
+radial-gradient(circle at 50% 50%, #0000ff22, transparent);
+animation:movebg 20s infinite linear;
+z-index:-2;
+}
+
+@keyframes movebg{
+0%{transform:translate(0,0)}
+50%{transform:translate(-20%, -10%)}
+100%{transform:translate(0,0)}
+}
+
+/* stars */
 
 canvas{
 position:fixed;
@@ -27,68 +50,87 @@ left:0;
 z-index:-1;
 }
 
+/* header */
+
 header{
 text-align:center;
-padding:80px 20px;
+padding:100px 20px;
 }
 
 h1{
-font-size:3.5rem;
+font-size:4rem;
 letter-spacing:2px;
+text-shadow:0 0 20px #a855ff;
 }
 
 .tagline{
-color:#bbb;
-margin-top:10px;
+margin-top:15px;
 font-style:italic;
+color:#cfcfcf;
 }
 
+/* container */
+
 .container{
-max-width:900px;
+max-width:1000px;
 margin:auto;
 padding:30px;
 }
 
+/* cards */
+
 .card{
-background:rgba(20,20,20,0.8);
-padding:30px;
-border-radius:15px;
+background:rgba(255,255,255,0.05);
+backdrop-filter:blur(12px);
+border:1px solid rgba(255,255,255,0.1);
+padding:35px;
 margin-bottom:25px;
-backdrop-filter:blur(10px);
-transition:0.3s;
+border-radius:18px;
+transition:0.4s;
 }
 
 .card:hover{
-transform:scale(1.03);
+transform:translateY(-8px) scale(1.02);
+box-shadow:0 0 30px rgba(170,80,255,0.3);
 }
 
 h2{
 margin-bottom:15px;
+color:#d8b4ff;
 }
 
-.join-btn{
+/* button */
+
+.join{
 display:inline-block;
-margin-top:15px;
-padding:12px 25px;
-background:#6a00ff;
-border-radius:8px;
+margin-top:20px;
+padding:14px 28px;
+background:linear-gradient(90deg,#7c3aed,#a855f7);
+border-radius:10px;
 text-decoration:none;
 color:white;
 font-weight:bold;
+transition:0.3s;
 }
 
-.join-btn:hover{
-background:#8a2cff;
+.join:hover{
+transform:scale(1.1);
+box-shadow:0 0 15px #a855ff;
 }
 
-.music-player{
-text-align:center;
+/* music */
+
+audio{
+margin-top:15px;
+width:100%;
 }
+
+/* footer */
 
 footer{
 text-align:center;
-padding:25px;
-color:#777;
+padding:40px;
+color:#999;
 }
 
 </style>
@@ -115,15 +157,16 @@ color:#777;
 <h2>The Community</h2>
 
 <p>
-This is a space for the real ones. Inspired by the legends and the music that gets us through it all,
-Jon Jon and Friends is a community built for good music, late-night world hopping, and genuine vibes.
+Inspired by the legends and the music that gets us through it all,
+Jon Jon and Friends is a place for late-night world hopping,
+good music, and real conversations.
 </p>
 
 <br>
 
 <p>
-Whether you're here to talk about life, blast music, or explore VRChat without the extra drama,
-you're home. Everyone deserves a spot in the circle.
+Whether you're exploring worlds, talking about life,
+or just vibing, everyone here has a spot in the circle.
 </p>
 
 </div>
@@ -134,11 +177,11 @@ you're home. Everyone deserves a spot in the circle.
 
 <p><b>The Vibe:</b> 100% Chill & Melodic</p>
 <p><b>The Goal:</b> Linking up and making memories</p>
-<p><b>The Code:</b> 999 — turning negativity into something positive</p>
+<p><b>The Code:</b> 999 – turning negativity into something positive</p>
 
 </div>
 
-<div class="card music-player">
+<div class="card">
 
 <h2>Group Playlist</h2>
 
@@ -147,22 +190,20 @@ you're home. Everyone deserves a spot in the circle.
 </audio>
 
 <p style="margin-top:10px;color:#aaa;">
-Upload your favorite track to the site to play it here.
+Upload your favorite track to play it here.
 </p>
 
 </div>
 
 <div class="card">
 
-<h2>Join the Crew</h2>
+<h2>Join the Circle</h2>
 
 <p>
 Positive vibes only. Legends never die.
 </p>
 
-<br>
-
-<a class="join-btn" href="#">
+<a class="join" href="#">
 Join Us on VRChat
 </a>
 
@@ -178,43 +219,48 @@ Jon Jon and Friends • VRChat Community
 
 <script>
 
-const canvas=document.getElementById("stars")
-const ctx=canvas.getContext("2d")
+/* star background */
 
-canvas.width=window.innerWidth
-canvas.height=window.innerHeight
+const canvas = document.getElementById("stars")
+const ctx = canvas.getContext("2d")
 
-let stars=[]
+canvas.width = window.innerWidth
+canvas.height = window.innerHeight
+
+let stars = []
 
 for(let i=0;i<200;i++){
-
 stars.push({
 x:Math.random()*canvas.width,
 y:Math.random()*canvas.height,
-size:Math.random()*2
+size:Math.random()*2,
+speed:Math.random()*0.3
 })
-
 }
 
-function draw(){
+function animate(){
 
 ctx.clearRect(0,0,canvas.width,canvas.height)
 
 ctx.fillStyle="white"
 
 stars.forEach(s=>{
+s.y += s.speed
+
+if(s.y > canvas.height){
+s.y = 0
+}
 
 ctx.beginPath()
 ctx.arc(s.x,s.y,s.size,0,Math.PI*2)
 ctx.fill()
-
 })
 
-requestAnimationFrame(draw)
+requestAnimationFrame(animate)
 
 }
 
-draw()
+animate()
 
 </script>
 
