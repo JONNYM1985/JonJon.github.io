@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Jon Jon and Friends</title>
 
 <style>
@@ -16,56 +15,31 @@ font-family:Arial, Helvetica, sans-serif;
 }
 
 body{
-background:#07030f;
+background:linear-gradient(180deg,#0b0018,#140033,#060012);
 color:white;
+text-align:center;
 overflow-x:hidden;
 }
 
-/* animated glow background */
+/* HERO SECTION */
 
-body::before{
-content:"";
-position:fixed;
-width:200%;
-height:200%;
+.hero{
+padding:120px 20px;
 background:
-radial-gradient(circle at 20% 30%, #6a00ff22, transparent),
-radial-gradient(circle at 80% 60%, #ff00ff22, transparent),
-radial-gradient(circle at 50% 80%, #3b00ff22, transparent);
-animation:bgmove 25s infinite linear;
-z-index:-2;
+radial-gradient(circle at 30% 20%, #7c3aed44, transparent),
+radial-gradient(circle at 80% 70%, #a855f744, transparent);
 }
 
-@keyframes bgmove{
-0%{transform:translate(0,0)}
-50%{transform:translate(-20%, -10%)}
-100%{transform:translate(0,0)}
-}
-
-canvas{
-position:fixed;
-top:0;
-left:0;
-z-index:-1;
-}
-
-/* header */
-
-header{
-text-align:center;
-padding:110px 20px 80px;
-}
-
-h1{
+.hero h1{
 font-size:4rem;
-letter-spacing:3px;
+color:white;
 text-shadow:0 0 25px #a855ff;
 }
 
 .tagline{
-margin-top:15px;
-color:#ccc;
+margin-top:10px;
 font-style:italic;
+color:#ccc;
 }
 
 /* container */
@@ -73,29 +47,29 @@ font-style:italic;
 .container{
 max-width:1000px;
 margin:auto;
-padding:30px;
+padding:40px 20px;
 }
 
 /* cards */
 
 .card{
 background:rgba(255,255,255,0.05);
-border:1px solid rgba(255,255,255,0.08);
-backdrop-filter:blur(12px);
+border:1px solid rgba(255,255,255,0.1);
+border-radius:20px;
 padding:35px;
-border-radius:18px;
-margin-bottom:25px;
-transition:0.35s;
+margin-bottom:30px;
+backdrop-filter:blur(10px);
+transition:.3s;
 }
 
 .card:hover{
 transform:translateY(-8px);
-box-shadow:0 0 25px rgba(160,70,255,0.35);
+box-shadow:0 0 30px #a855ff55;
 }
 
 h2{
-margin-bottom:15px;
 color:#d8b4ff;
+margin-bottom:15px;
 }
 
 /* join button */
@@ -104,13 +78,13 @@ color:#d8b4ff;
 display:inline-block;
 margin-top:20px;
 padding:16px 32px;
-font-size:1.1rem;
 background:linear-gradient(90deg,#7c3aed,#a855f7);
 border-radius:12px;
 text-decoration:none;
 color:white;
 font-weight:bold;
-transition:0.3s;
+font-size:18px;
+transition:.3s;
 }
 
 .join:hover{
@@ -118,19 +92,16 @@ transform:scale(1.1);
 box-shadow:0 0 20px #a855ff;
 }
 
-/* playlist */
+/* spotify player */
 
-audio{
-width:100%;
-margin-top:15px;
+iframe{
+margin-top:20px;
+border-radius:12px;
 }
 
-/* footer */
-
 footer{
-text-align:center;
 padding:40px;
-color:#999;
+color:#888;
 }
 
 </style>
@@ -138,9 +109,7 @@ color:#999;
 
 <body>
 
-<canvas id="stars"></canvas>
-
-<header>
+<section class="hero">
 
 <h1>Jon Jon and Friends</h1>
 
@@ -148,7 +117,15 @@ color:#999;
 "Welcome to the party, we don't want it to end."
 </p>
 
-</header>
+<a class="join"
+href="https://vrchat.com/home/group/grp_e6ecca5a-828b-4706-9c23-db1723469436"
+target="_blank">
+
+JOIN GROUP
+
+</a>
+
+</section>
 
 <div class="container">
 
@@ -157,39 +134,19 @@ color:#999;
 <h2>The Community</h2>
 
 <p>
-This is a space for the real ones. Inspired by the legends and the music that gets us through it all,
-Jon Jon and Friends is a community built for good music, late-night world hopping, and genuine vibes.
+Jon Jon and Friends is a place for real ones. Late night world hopping,
+good music, and genuine vibes.
 </p>
 
-<br>
-
 <p>
-Whether you're here to talk about life, blast some music, or explore worlds without drama —
-you're home.
+Positive vibes only. Legends never die.
 </p>
 
 </div>
 
 <div class="card">
 
-<h2>The OVO Connection</h2>
-
-<p>
-From late-night vibes to emotional tracks, the playlist never stops.
-If you're here for the music, the memories, and the energy — you're in the right place.
-</p>
-
-<br>
-
-<p>
-"Just hold on, we're going home."
-</p>
-
-</div>
-
-<div class="card">
-
-<h2>Group Vitals</h2>
+<h2>The Vibe</h2>
 
 <p><b>The Vibe:</b> 100% Chill & Melodic</p>
 <p><b>The Goal:</b> Linking up and making memories</p>
@@ -199,31 +156,45 @@ If you're here for the music, the memories, and the energy — you're in the rig
 
 <div class="card">
 
-<h2>Group Playlist</h2>
+<h2>Drake Vibes</h2>
 
-<audio controls>
-<source src="music.mp3" type="audio/mpeg">
-</audio>
+<p>Late-night energy inspired by Drake.</p>
 
-<p style="color:#aaa;margin-top:10px;">
-Add your favorite track to the site to play it here.
-</p>
+<iframe
+src="https://open.spotify.com/embed/artist/3TVXtAsR1Inumwj472S9r4"
+width="100%" height="200" frameborder="0"
+allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
+</iframe>
 
 </div>
 
 <div class="card">
 
-<h2>Join Our VRChat Group</h2>
+<h2>Juice WRLD Energy</h2>
+
+<p>Music that hits the soul.</p>
+
+<iframe
+src="https://open.spotify.com/embed/artist/4MCBfE4596Uoi2O4DtmEMz"
+width="100%" height="200" frameborder="0"
+allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
+</iframe>
+
+</div>
+
+<div class="card">
+
+<h2>Join the Circle</h2>
 
 <p>
-Click the button below to open the official group page and join the community.
+Click below to join the official VRChat group.
 </p>
 
 <a class="join"
 href="https://vrchat.com/home/group/grp_e6ecca5a-828b-4706-9c23-db1723469436"
 target="_blank">
 
-Join Jon Jon and Friends on VRChat
+Join Jon Jon and Friends
 
 </a>
 
@@ -233,56 +204,9 @@ Join Jon Jon and Friends on VRChat
 
 <footer>
 
-Positive vibes only • Legends never die
+Jon Jon and Friends • VRChat Community
 
 </footer>
-
-<script>
-
-/* star animation */
-
-const canvas = document.getElementById("stars")
-const ctx = canvas.getContext("2d")
-
-canvas.width = window.innerWidth
-canvas.height = window.innerHeight
-
-let stars=[]
-
-for(let i=0;i<220;i++){
-stars.push({
-x:Math.random()*canvas.width,
-y:Math.random()*canvas.height,
-size:Math.random()*2,
-speed:Math.random()*0.4
-})
-}
-
-function animate(){
-
-ctx.clearRect(0,0,canvas.width,canvas.height)
-
-ctx.fillStyle="white"
-
-stars.forEach(s=>{
-s.y+=s.speed
-
-if(s.y>canvas.height){
-s.y=0
-}
-
-ctx.beginPath()
-ctx.arc(s.x,s.y,s.size,0,Math.PI*2)
-ctx.fill()
-})
-
-requestAnimationFrame(animate)
-
-}
-
-animate()
-
-</script>
 
 </body>
 </html>
