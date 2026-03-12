@@ -8,8 +8,6 @@
 
 <style>
 
-/* PAGE */
-
 body{
 margin:0;
 font-family:Arial, Helvetica, sans-serif;
@@ -94,7 +92,7 @@ text-decoration:none;
 box-shadow:0 0 20px #a855ff;
 }
 
-/* CONTENT CARDS */
+/* CONTENT */
 
 .card{
 
@@ -144,8 +142,6 @@ color:#999;
 
 <canvas id="stars"></canvas>
 
-<!-- MUSIC -->
-
 <audio autoplay muted loop id="music">
 <source src="music.mp3" type="audio/mpeg">
 </audio>
@@ -155,8 +151,6 @@ window.addEventListener("click",()=>{
 document.getElementById("music").muted=false
 })
 </script>
-
-<!-- LOGO -->
 
 <div class="logo">
 Jon Jon and Friends
