@@ -7,7 +7,6 @@
 <title>Jon Jon and Friends</title>
 
 <style>
-
 body{
 margin:0;
 font-family:Arial, Helvetica, sans-serif;
@@ -18,7 +17,6 @@ overflow-x:hidden;
 }
 
 /* NAVBAR */
-
 nav{
 position:fixed;
 top:0;
@@ -27,7 +25,6 @@ background:rgba(0,0,0,.6);
 padding:15px;
 backdrop-filter:blur(6px);
 }
-
 nav a{
 margin:0 15px;
 color:#d6caff;
@@ -36,7 +33,6 @@ font-weight:bold;
 }
 
 /* STAR SKY */
-
 canvas{
 position:fixed;
 top:0;
@@ -45,25 +41,19 @@ z-index:-1;
 }
 
 /* LOGO */
-
 .logo{
-
 margin-top:140px;
 font-size:95px;
 font-weight:900;
-
 background:linear-gradient(90deg,#ff7aff,#a855f7,#7c3aed);
 -webkit-background-clip:text;
 color:transparent;
-
 text-shadow:
 0 0 20px #a855ff,
 0 0 60px #7c3aed;
-
 }
 
 /* TAGLINE */
-
 .tagline{
 margin-top:10px;
 color:#bbb;
@@ -71,49 +61,38 @@ font-style:italic;
 }
 
 /* JOIN BUTTON */
-
 .join{
-
 display:inline-block;
 margin-top:35px;
 padding:18px 45px;
-
 font-size:22px;
 font-weight:bold;
-
 background:linear-gradient(90deg,#7c3aed,#a855f7);
 border-radius:12px;
 color:white;
 text-decoration:none;
-
 }
-
 .join:hover{
 box-shadow:0 0 20px #a855ff;
 }
 
-/* CONTENT */
-
+/* CONTENT CARDS */
 .card{
-
 background:rgba(0,0,0,.55);
 border-radius:20px;
 padding:40px;
 margin:70px auto;
 width:85%;
 max-width:900px;
-
 }
 
 /* MEMBER BOXES */
-
 .members{
 display:flex;
 flex-wrap:wrap;
 justify-content:center;
 gap:20px;
 }
-
 .member{
 background:rgba(255,255,255,.05);
 padding:20px;
@@ -122,12 +101,10 @@ width:170px;
 }
 
 /* FOOTER */
-
 footer{
 margin:90px 0;
 color:#999;
 }
-
 </style>
 
 </head>
@@ -142,6 +119,8 @@ color:#999;
 
 <canvas id="stars"></canvas>
 
+<!-- MUSIC -->
+
 <audio autoplay muted loop id="music">
 <source src="music.mp3" type="audio/mpeg">
 </audio>
@@ -152,107 +131,55 @@ document.getElementById("music").muted=false
 })
 </script>
 
-<div class="logo">
-Jon Jon and Friends
-</div>
+<div class="logo">Jon Jon and Friends</div>
+<div class="tagline">"Welcome to the party — we don't want it to end."</div>
 
-<div class="tagline">
-"Welcome to the party — we don't want it to end."
-</div>
-
-<a class="join"
-href="https://vrchat.com/home/group/grp_e6ecca5a-828b-4706-9c23-db1723469436"
-target="_blank">
-
+<a class="join" href="https://vrchat.com/home/group/grp_e6ecca5a-828b-4706-9c23-db1723469436" target="_blank">
 JOIN THE VRCHAT GROUP
-
 </a>
 
 <div class="card" id="community">
-
 <h2>The Community</h2>
-
 <p>
 Late night VRChat world hopping, music, and good conversations.
 Jon Jon and Friends is a chill space for everyone.
 </p>
-
 </div>
 
 <div class="card" id="members">
-
 <h2>Members</h2>
-
 <div class="members">
-
-<div class="member">
-<h3>Jon Jon</h3>
-Founder
+<div class="member"><h3>Jon Jon</h3>Founder</div>
+<div class="member"><h3>Friends</h3>Community</div>
+<div class="member"><h3>Legends</h3>Active Members</div>
+</div>
 </div>
 
-<div class="member">
-<h3>Friends</h3>
-Community
-</div>
-
-<div class="member">
-<h3>Legends</h3>
-Active Members
-</div>
-
-</div>
-
-</div>
-
-<footer>
-Positive vibes only • Legends never die
-</footer>
+<footer>Positive vibes only • Legends never die</footer>
 
 <script>
-
 /* STAR SKY */
-
 const canvas=document.getElementById("stars")
 const ctx=canvas.getContext("2d")
-
 canvas.width=window.innerWidth
 canvas.height=window.innerHeight
-
 let stars=[]
-
 for(let i=0;i<300;i++){
-stars.push({
-x:Math.random()*canvas.width,
-y:Math.random()*canvas.height,
-size:Math.random()*2,
-speed:Math.random()*0.4
-})
+stars.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,size:Math.random()*2,speed:Math.random()*0.4})
 }
-
 function draw(){
-
 ctx.clearRect(0,0,canvas.width,canvas.height)
-
 ctx.fillStyle="white"
-
 stars.forEach(s=>{
-
 s.y+=s.speed
-
 if(s.y>canvas.height)s.y=0
-
 ctx.beginPath()
 ctx.arc(s.x,s.y,s.size,0,Math.PI*2)
 ctx.fill()
-
 })
-
 requestAnimationFrame(draw)
-
 }
-
 draw()
-
 </script>
 
 </body>
