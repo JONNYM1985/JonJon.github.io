@@ -1,31 +1,42 @@
 <!DOCTYPE html>
-<html>
-<head>
 
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Jon Jon and Friends</title>
 
 <style>
 
 body{
 margin:0;
-font-family:Arial;
+font-family:Arial,Helvetica,sans-serif;
+background:linear-gradient(#040012,#0c0025,#000);
 color:white;
 text-align:center;
 overflow-x:hidden;
-
-/* CITY NIGHT BACKGROUND */
-
-background-image:
-linear-gradient(rgba(5,0,16,0.7),rgba(5,0,16,0.9)),
-url("https://images.unsplash.com/photo-1477959858617-67f85cf4f1df");
-
-background-size:cover;
-background-attachment:fixed;
-background-position:center;
-
 }
 
-/* star canvas */
+/* NAVBAR */
+
+nav{
+position:fixed;
+top:0;
+width:100%;
+background:rgba(0,0,0,.6);
+backdrop-filter:blur(8px);
+padding:15px;
+z-index:100;
+}
+
+nav a{
+margin:0 15px;
+color:#d8c8ff;
+text-decoration:none;
+font-weight:bold;
+}
+
+/* STAR BACKGROUND */
 
 canvas{
 position:fixed;
@@ -34,13 +45,27 @@ left:0;
 z-index:-1;
 }
 
-/* logo */
+/* PALM TREES */
+
+.palm-left,
+.palm-right{
+position:fixed;
+bottom:0;
+width:300px;
+opacity:.35;
+pointer-events:none;
+}
+
+.palm-left{left:0;}
+.palm-right{right:0;transform:scaleX(-1);}
+
+/* LOGO */
 
 .logo{
 
-font-size:110px;
+margin-top:140px;
+font-size:95px;
 font-weight:900;
-margin-top:120px;
 
 background:linear-gradient(90deg,#ff7aff,#a855f7,#7c3aed);
 -webkit-background-clip:text;
@@ -48,33 +73,31 @@ color:transparent;
 
 text-shadow:
 0 0 20px #a855ff,
-0 0 40px #a855ff,
-0 0 90px #7c3aed;
+0 0 50px #7c3aed;
 
 }
 
 .tagline{
 margin-top:10px;
-color:#ddd;
+color:#bbb;
 font-style:italic;
 }
 
-/* join button */
+/* BUTTON */
 
 .join{
 
 display:inline-block;
 margin-top:30px;
-padding:18px 40px;
+padding:18px 45px;
 
 font-size:22px;
 font-weight:bold;
 
 background:linear-gradient(90deg,#7c3aed,#a855f7);
 border-radius:12px;
-
-text-decoration:none;
 color:white;
+text-decoration:none;
 
 }
 
@@ -82,68 +105,62 @@ color:white;
 box-shadow:0 0 25px #a855ff;
 }
 
-/* sections */
+/* MEMBER COUNTER */
+
+.counter{
+font-size:30px;
+margin-top:30px;
+color:#bfa7ff;
+}
+
+/* CARDS */
 
 .card{
 
-background:rgba(0,0,0,0.55);
+background:rgba(0,0,0,.55);
 border-radius:20px;
 padding:40px;
 margin:70px auto;
 width:85%;
 max-width:1000px;
 
-backdrop-filter:blur(10px);
-
 }
 
-/* artist images */
+/* MEMBERS */
 
-.artist{
-
+.members{
 display:flex;
-flex-wrap:wrap;
 justify-content:center;
-gap:30px;
+flex-wrap:wrap;
+gap:20px;
+}
+
+.member{
+
+background:rgba(255,255,255,.05);
+padding:20px;
+border-radius:14px;
+width:170px;
+
+}
+
+/* GALLERY */
+
+.gallery{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:15px;
 margin-top:25px;
-
 }
 
-.artist img{
-
-width:220px;
-border-radius:15px;
-
-box-shadow:0 0 20px rgba(168,85,247,0.6);
-
-}
-
-iframe{
-margin-top:20px;
-border-radius:12px;
+.gallery img{
+width:100%;
+border-radius:10px;
 }
 
 footer{
-margin:80px 0;
-color:#aaa;
-}
-
-/* palm decoration */
-
-.palms{
-
-position:fixed;
-bottom:0;
-width:100%;
-pointer-events:none;
-
-}
-
-.palms img{
-
-width:100%;
-opacity:.35;
-
+margin:90px 0;
+color:#999;
 }
 
 </style>
@@ -152,28 +169,34 @@ opacity:.35;
 
 <body>
 
+<nav>
+<a href="#">Home</a>
+<a href="#about">About</a>
+<a href="#members">Members</a>
+<a href="#gallery">Gallery</a>
+</nav>
+
 <canvas id="stars"></canvas>
 
-<!-- AUTOPLAY MUSIC -->
+<img class="palm-left" src="https://i.imgur.com/ZcLLrkY.png">
+<img class="palm-right" src="https://i.imgur.com/ZcLLrkY.png">
 
-<audio autoplay loop muted id="music">
+<audio autoplay muted loop id="music">
 <source src="music.mp3" type="audio/mpeg">
 </audio>
 
 <script>
-window.addEventListener("click",function(){
-document.getElementById("music").muted=false;
-});
+window.addEventListener("click",()=>{
+document.getElementById("music").muted=false
+})
 </script>
-
-<!-- LOGO -->
 
 <div class="logo">
 Jon Jon and Friends
 </div>
 
 <div class="tagline">
-"Welcome to the party, we don't want it to end."
+"Welcome to the party — we don't want it to end."
 </div>
 
 <a class="join"
@@ -184,98 +207,84 @@ JOIN THE VRCHAT GROUP
 
 </a>
 
-<!-- COMMUNITY -->
+<div class="counter">
+Members: <span id="memberCount">Loading...</span>
+</div>
 
-<div class="card">
+<div class="card" id="about">
 
 <h2>The Community</h2>
 
 <p>
-Late night world hopping. Good music. Real conversations.
-Jon Jon and Friends is a place for the real ones.
+A late night VRChat community for music, exploring worlds,
+and meeting real people. No drama — just vibes.
 </p>
 
 </div>
 
-<!-- ARTISTS -->
+<div class="card" id="members">
 
-<div class="card">
+<h2>Members</h2>
 
-<h2>Community Vibes</h2>
+<div class="members">
 
-<div class="artist">
+<div class="member">
+<h3>Jon Jon</h3>
+Founder
+</div>
 
-<img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Juice_WRLD_2018.png">
+<div class="member">
+<h3>Friends</h3>
+Community
+</div>
 
-<img src="https://upload.wikimedia.org/wikipedia/commons/9/90/Drake_2016.png">
-
+<div class="member">
+<h3>Legends</h3>
+Active Members
 </div>
 
 </div>
 
-<!-- MUSIC -->
-
-<div class="card">
-
-<h2>Drake Vibes</h2>
-
-<iframe
-src="https://open.spotify.com/embed/artist/3TVXtAsR1Inumwj472S9r4"
-width="100%" height="200"
-allow="autoplay; clipboard-write; encrypted-media;">
-</iframe>
-
 </div>
 
-<div class="card">
+<div class="card" id="gallery">
 
-<h2>Juice WRLD Energy</h2>
+<h2>VRChat Moments</h2>
 
-<iframe
-src="https://open.spotify.com/embed/artist/4MCBfE4596Uoi2O4DtmEMz"
-width="100%" height="200"
-allow="autoplay; clipboard-write; encrypted-media;">
-</iframe>
+<div class="gallery">
+
+<img src="https://images.unsplash.com/photo-1511512578047-dfb367046420">
+<img src="https://images.unsplash.com/photo-1542751371-adc38448a05e">
+<img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f">
+<img src="https://images.unsplash.com/photo-1493711662062-fa541adb3fc8">
+
+</div>
 
 </div>
 
 <footer>
-
 Positive vibes only • Legends never die
-
 </footer>
-
-<!-- PALM TREE OVERLAY -->
-
-<div class="palms">
-
-<img src="https://i.imgur.com/3ZQ3Z6K.png">
-
-</div>
 
 <script>
 
-/* galaxy stars */
+/* STARS */
 
-const canvas = document.getElementById("stars")
-const ctx = canvas.getContext("2d")
+const canvas=document.getElementById("stars")
+const ctx=canvas.getContext("2d")
 
-canvas.width = window.innerWidth
-canvas.height = window.innerHeight
+canvas.width=window.innerWidth
+canvas.height=window.innerHeight
 
 let stars=[]
 
-for(let i=0;i<300;i++){
-
+for(let i=0;i<350;i++){
 stars.push({
-
 x:Math.random()*canvas.width,
 y:Math.random()*canvas.height,
 size:Math.random()*2,
 speed:Math.random()*0.4
-
 })
-
 }
 
 function draw(){
@@ -288,9 +297,7 @@ stars.forEach(s=>{
 
 s.y+=s.speed
 
-if(s.y>canvas.height){
-s.y=0
-}
+if(s.y>canvas.height)s.y=0
 
 ctx.beginPath()
 ctx.arc(s.x,s.y,s.size,0,Math.PI*2)
@@ -303,6 +310,26 @@ requestAnimationFrame(draw)
 }
 
 draw()
+
+/* MEMBER COUNTER */
+
+async function getMembers(){
+
+try{
+
+let res=await fetch("https://api.allorigins.win/raw?url=https://vrchat.com/api/1/groups/grp_e6ecca5a-828b-4706-9c23-db1723469436")
+let data=await res.json()
+
+document.getElementById("memberCount").innerText=data.memberCount
+
+}catch{
+document.getElementById("memberCount").innerText="Unavailable"
+}
+
+}
+
+getMembers()
+setInterval(getMembers,60000)
 
 </script>
 
