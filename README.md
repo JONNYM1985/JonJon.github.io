@@ -11,11 +11,21 @@ margin:0;
 font-family:Arial;
 color:white;
 text-align:center;
-background:linear-gradient(#0a0018,#1b0033,#050010);
 overflow-x:hidden;
+
+/* CITY NIGHT BACKGROUND */
+
+background-image:
+linear-gradient(rgba(5,0,16,0.7),rgba(5,0,16,0.9)),
+url("https://images.unsplash.com/photo-1477959858617-67f85cf4f1df");
+
+background-size:cover;
+background-attachment:fixed;
+background-position:center;
+
 }
 
-/* galaxy background */
+/* star canvas */
 
 canvas{
 position:fixed;
@@ -24,7 +34,7 @@ left:0;
 z-index:-1;
 }
 
-/* neon logo */
+/* logo */
 
 .logo{
 
@@ -43,11 +53,9 @@ text-shadow:
 
 }
 
-/* tagline */
-
 .tagline{
-margin-top:15px;
-color:#ccc;
+margin-top:10px;
+color:#ddd;
 font-style:italic;
 }
 
@@ -78,47 +86,36 @@ box-shadow:0 0 25px #a855ff;
 
 .card{
 
-background:rgba(255,255,255,0.05);
+background:rgba(0,0,0,0.55);
 border-radius:20px;
-padding:35px;
-margin:60px auto;
-width:80%;
+padding:40px;
+margin:70px auto;
+width:85%;
 max-width:1000px;
 
 backdrop-filter:blur(10px);
 
 }
 
-/* members */
+/* artist images */
 
-.members{
+.artist{
+
 display:flex;
-justify-content:center;
-gap:20px;
 flex-wrap:wrap;
+justify-content:center;
+gap:30px;
+margin-top:25px;
+
 }
 
-.member{
+.artist img{
 
-background:rgba(255,255,255,0.07);
-padding:20px;
+width:220px;
 border-radius:15px;
-width:180px;
 
-}
+box-shadow:0 0 20px rgba(168,85,247,0.6);
 
-/* gallery */
-
-.gallery{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-gap:15px;
-margin-top:20px;
-}
-
-.gallery img{
-width:100%;
-border-radius:10px;
 }
 
 iframe{
@@ -128,7 +125,25 @@ border-radius:12px;
 
 footer{
 margin:80px 0;
-color:#888;
+color:#aaa;
+}
+
+/* palm decoration */
+
+.palms{
+
+position:fixed;
+bottom:0;
+width:100%;
+pointer-events:none;
+
+}
+
+.palms img{
+
+width:100%;
+opacity:.35;
+
 }
 
 </style>
@@ -146,7 +161,7 @@ color:#888;
 </audio>
 
 <script>
-window.addEventListener("click", function(){
+window.addEventListener("click",function(){
 document.getElementById("music").muted=false;
 });
 </script>
@@ -160,8 +175,6 @@ Jon Jon and Friends
 <div class="tagline">
 "Welcome to the party, we don't want it to end."
 </div>
-
-<!-- JOIN GROUP BUTTON -->
 
 <a class="join"
 href="https://vrchat.com/home/group/grp_e6ecca5a-828b-4706-9c23-db1723469436"
@@ -184,34 +197,23 @@ Jon Jon and Friends is a place for the real ones.
 
 </div>
 
-<!-- MEMBERS -->
+<!-- ARTISTS -->
 
 <div class="card">
 
-<h2>Members</h2>
+<h2>Community Vibes</h2>
 
-<div class="members">
+<div class="artist">
 
-<div class="member">
-<h3>Jon Jon</h3>
-<p>Founder</p>
-</div>
+<img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Juice_WRLD_2018.png">
 
-<div class="member">
-<h3>Friends</h3>
-<p>Community</p>
-</div>
-
-<div class="member">
-<h3>Legends</h3>
-<p>Active Members</p>
-</div>
+<img src="https://upload.wikimedia.org/wikipedia/commons/9/90/Drake_2016.png">
 
 </div>
 
 </div>
 
-<!-- DRAKE MUSIC -->
+<!-- MUSIC -->
 
 <div class="card">
 
@@ -225,8 +227,6 @@ allow="autoplay; clipboard-write; encrypted-media;">
 
 </div>
 
-<!-- JUICE WRLD MUSIC -->
-
 <div class="card">
 
 <h2>Juice WRLD Energy</h2>
@@ -239,28 +239,19 @@ allow="autoplay; clipboard-write; encrypted-media;">
 
 </div>
 
-<!-- GALLERY -->
-
-<div class="card">
-
-<h2>VRChat Gallery</h2>
-
-<div class="gallery">
-
-<img src="https://images.unsplash.com/photo-1542751371-adc38448a05e">
-<img src="https://images.unsplash.com/photo-1511512578047-dfb367046420">
-<img src="https://images.unsplash.com/photo-1493711662062-fa541adb3fc8">
-<img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f">
-
-</div>
-
-</div>
-
 <footer>
 
 Positive vibes only • Legends never die
 
 </footer>
+
+<!-- PALM TREE OVERLAY -->
+
+<div class="palms">
+
+<img src="https://i.imgur.com/3ZQ3Z6K.png">
+
+</div>
 
 <script>
 
