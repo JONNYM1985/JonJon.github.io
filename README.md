@@ -94,14 +94,6 @@ text-decoration:none;
 box-shadow:0 0 20px #a855ff;
 }
 
-/* MEMBER COUNTER */
-
-.counter{
-margin-top:30px;
-font-size:28px;
-color:#c7b7ff;
-}
-
 /* CONTENT CARDS */
 
 .card{
@@ -181,10 +173,6 @@ target="_blank">
 JOIN THE VRCHAT GROUP
 
 </a>
-
-<div class="counter">
-Members: <span id="memberCount">Loading...</span>
-</div>
 
 <div class="card" id="community">
 
@@ -270,28 +258,6 @@ requestAnimationFrame(draw)
 }
 
 draw()
-
-/* VRCHAT MEMBER COUNT */
-
-async function getMembers(){
-
-try{
-
-let res=await fetch("https://api.allorigins.win/raw?url=https://vrchat.com/api/1/groups/grp_e6ecca5a-828b-4706-9c23-db1723469436")
-let data=await res.json()
-
-document.getElementById("memberCount").innerText=data.memberCount
-
-}catch{
-
-document.getElementById("memberCount").innerText="Unavailable"
-
-}
-
-}
-
-getMembers()
-setInterval(getMembers,60000)
 
 </script>
 
