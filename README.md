@@ -11,11 +11,11 @@ margin:0;
 font-family:Arial;
 color:white;
 text-align:center;
-background:linear-gradient(#0b0018,#1d0038,#050010);
+background:linear-gradient(#0a0018,#1b0033,#050010);
 overflow-x:hidden;
 }
 
-/* STAR BACKGROUND */
+/* galaxy background */
 
 canvas{
 position:fixed;
@@ -24,14 +24,13 @@ left:0;
 z-index:-1;
 }
 
-/* BIG LOGO */
+/* neon logo */
 
 .logo{
 
 font-size:110px;
 font-weight:900;
 margin-top:120px;
-letter-spacing:6px;
 
 background:linear-gradient(90deg,#ff7aff,#a855f7,#7c3aed);
 -webkit-background-clip:text;
@@ -40,11 +39,11 @@ color:transparent;
 text-shadow:
 0 0 20px #a855ff,
 0 0 40px #a855ff,
-0 0 80px #7c3aed;
+0 0 90px #7c3aed;
 
 }
 
-/* TAGLINE */
+/* tagline */
 
 .tagline{
 margin-top:15px;
@@ -52,22 +51,7 @@ color:#ccc;
 font-style:italic;
 }
 
-/* CARD SECTIONS */
-
-.card{
-
-background:rgba(255,255,255,0.05);
-border-radius:20px;
-padding:35px;
-margin:50px auto;
-width:80%;
-max-width:900px;
-
-backdrop-filter:blur(10px);
-
-}
-
-/* JOIN BUTTON */
+/* join button */
 
 .join{
 
@@ -90,13 +74,60 @@ color:white;
 box-shadow:0 0 25px #a855ff;
 }
 
+/* sections */
+
+.card{
+
+background:rgba(255,255,255,0.05);
+border-radius:20px;
+padding:35px;
+margin:60px auto;
+width:80%;
+max-width:1000px;
+
+backdrop-filter:blur(10px);
+
+}
+
+/* members */
+
+.members{
+display:flex;
+justify-content:center;
+gap:20px;
+flex-wrap:wrap;
+}
+
+.member{
+
+background:rgba(255,255,255,0.07);
+padding:20px;
+border-radius:15px;
+width:180px;
+
+}
+
+/* gallery */
+
+.gallery{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:15px;
+margin-top:20px;
+}
+
+.gallery img{
+width:100%;
+border-radius:10px;
+}
+
 iframe{
 margin-top:20px;
 border-radius:12px;
 }
 
 footer{
-margin:60px 0;
+margin:80px 0;
 color:#888;
 }
 
@@ -130,6 +161,8 @@ Jon Jon and Friends
 "Welcome to the party, we don't want it to end."
 </div>
 
+<!-- JOIN GROUP BUTTON -->
+
 <a class="join"
 href="https://vrchat.com/home/group/grp_e6ecca5a-828b-4706-9c23-db1723469436"
 target="_blank">
@@ -145,23 +178,44 @@ JOIN THE VRCHAT GROUP
 <h2>The Community</h2>
 
 <p>
-A place for real ones. Late-night world hopping,
-good music, and genuine vibes.
-</p>
-
-<p>
-Positive vibes only. Legends never die.
+Late night world hopping. Good music. Real conversations.
+Jon Jon and Friends is a place for the real ones.
 </p>
 
 </div>
 
-<!-- DRAKE SECTION -->
+<!-- MEMBERS -->
+
+<div class="card">
+
+<h2>Members</h2>
+
+<div class="members">
+
+<div class="member">
+<h3>Jon Jon</h3>
+<p>Founder</p>
+</div>
+
+<div class="member">
+<h3>Friends</h3>
+<p>Community</p>
+</div>
+
+<div class="member">
+<h3>Legends</h3>
+<p>Active Members</p>
+</div>
+
+</div>
+
+</div>
+
+<!-- DRAKE MUSIC -->
 
 <div class="card">
 
 <h2>Drake Vibes</h2>
-
-<p>Late-night energy and melodic tracks.</p>
 
 <iframe
 src="https://open.spotify.com/embed/artist/3TVXtAsR1Inumwj472S9r4"
@@ -171,13 +225,11 @@ allow="autoplay; clipboard-write; encrypted-media;">
 
 </div>
 
-<!-- JUICE WRLD SECTION -->
+<!-- JUICE WRLD MUSIC -->
 
 <div class="card">
 
 <h2>Juice WRLD Energy</h2>
-
-<p>Music that hits the soul.</p>
 
 <iframe
 src="https://open.spotify.com/embed/artist/4MCBfE4596Uoi2O4DtmEMz"
@@ -187,56 +239,79 @@ allow="autoplay; clipboard-write; encrypted-media;">
 
 </div>
 
+<!-- GALLERY -->
+
+<div class="card">
+
+<h2>VRChat Gallery</h2>
+
+<div class="gallery">
+
+<img src="https://images.unsplash.com/photo-1542751371-adc38448a05e">
+<img src="https://images.unsplash.com/photo-1511512578047-dfb367046420">
+<img src="https://images.unsplash.com/photo-1493711662062-fa541adb3fc8">
+<img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f">
+
+</div>
+
+</div>
+
 <footer>
 
-Jon Jon and Friends • VRChat Community
+Positive vibes only • Legends never die
 
 </footer>
 
 <script>
 
-/* STAR BACKGROUND */
+/* galaxy stars */
 
-const canvas = document.getElementById("stars");
-const ctx = canvas.getContext("2d");
+const canvas = document.getElementById("stars")
+const ctx = canvas.getContext("2d")
 
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+canvas.width = window.innerWidth
+canvas.height = window.innerHeight
 
-let stars=[];
+let stars=[]
 
-for(let i=0;i<200;i++){
+for(let i=0;i<300;i++){
+
 stars.push({
+
 x:Math.random()*canvas.width,
 y:Math.random()*canvas.height,
 size:Math.random()*2,
-speed:Math.random()*0.3
-});
+speed:Math.random()*0.4
+
+})
+
 }
 
 function draw(){
 
-ctx.clearRect(0,0,canvas.width,canvas.height);
+ctx.clearRect(0,0,canvas.width,canvas.height)
 
-ctx.fillStyle="white";
+ctx.fillStyle="white"
 
 stars.forEach(s=>{
-s.y+=s.speed;
+
+s.y+=s.speed
 
 if(s.y>canvas.height){
-s.y=0;
+s.y=0
 }
 
-ctx.beginPath();
-ctx.arc(s.x,s.y,s.size,0,Math.PI*2);
-ctx.fill();
+ctx.beginPath()
+ctx.arc(s.x,s.y,s.size,0,Math.PI*2)
+ctx.fill()
 
-});
+})
 
-requestAnimationFrame(draw);
+requestAnimationFrame(draw)
+
 }
 
-draw();
+draw()
 
 </script>
 
