@@ -30,7 +30,7 @@
         
         .ocean-mist { position: fixed; inset: 0; z-index: -1; background: radial-gradient(circle at 50% 120%, rgba(0, 255, 255, 0.05) 0%, transparent 50%); animation: pulse-mist 10s infinite alternate; }
 
-        /* 3. LOGO CIRCLES (STABILIZED) */
+        /* 3. LOGO CIRCLES */
         #overlay { position: fixed; inset: 0; background: #000; z-index: 9999; display: flex; align-items: center; justify-content: center; cursor: pointer; }
         #loading-screen { position: fixed; inset: 0; background: #000; z-index: 9998; display: none; flex-direction: column; align-items: center; justify-content: center; transition: opacity 1.5s ease; }
         @media (min-width: 768px) { #loading-screen { flex-direction: row; gap: 4rem; } }
@@ -62,7 +62,11 @@
         .gallery-item { width: 300px; height: 400px; flex-shrink: 0; border-radius: 1rem; border: 1px solid rgba(255, 255, 255, 0.1); overflow: hidden; }
         .gallery-item img { width: 100%; height: 100%; object-fit: cover; }
 
-        /* 5. LOCATION BOXES (FIXED SIZE) */
+        /* 5. FIX: SCHEDULE BOX ROOM */
+        .schedule-container {
+            min-width: 200px; /* Forces enough width for the word 'Schedule' */
+        }
+
         .location-card {
             min-height: 140px;
             display: flex;
@@ -143,8 +147,8 @@
                 <p id="status-subtext" class="text-[9px] font-mono text-gray-600 uppercase mt-2 italic tracking-widest">Active Protocol</p>
             </div>
 
-            <div class="glass p-6 border-r-4 border-purple-500 flex flex-col gap-3">
-                <h3 class="font-sync text-[10px] mb-2 text-purple-400 uppercase font-bold italic tracking-widest">Schedule</h3>
+            <div class="glass p-6 border-r-4 border-purple-500 flex flex-col gap-3 schedule-container">
+                <h3 class="font-sync text-[10px] mb-2 text-purple-400 uppercase font-bold italic tracking-widest whitespace-nowrap">Schedule</h3>
                 <div id="day-tue" class="p-3 rounded font-mono text-[10px] uppercase border border-white/5">Every Tuesday</div>
                 <div id="day-thu" class="p-3 rounded font-mono text-[10px] uppercase border border-white/5">Sometimes Thursday</div>
                 <div id="day-wknd" class="p-3 rounded font-mono text-[10px] uppercase border border-white/5">Other Weekend</div>
@@ -174,7 +178,7 @@
                     <p class="text-[8px] font-mono text-gray-500 uppercase mt-3">The Nexus Hangout</p>
                 </a>
                 <a href="https://vrchat.com/home/world/wrld_1a8b8684-3b19-4770-a4a7-288762f57b29/info" target="_blank" class="location-card rounded-2xl">
-                    <p class="text-[11px] font-sync uppercase italic text-white tracking-widest">1's Optimized Box</p>
+                    <p class="text-[11px] font-sync uppercase italic text-white tracking-widest whitespace-nowrap">1's Optimized Box</p>
                     <p class="text-[8px] font-mono text-gray-500 uppercase mt-3">Utility Zone</p>
                 </a>
                 <a href="https://vrchat.com/home/world/wrld_dd036610-a246-4f52-bf01-9d7cea3405d7/info" target="_blank" class="location-card rounded-2xl">
@@ -200,7 +204,6 @@
                     </div>
                 </div>
             </div>
-            <span class="hidden md:block text-[9px] font-mono text-gray-500 uppercase tracking-[0.3em]">Live Stream Active</span>
         </div>
     </div>
 
