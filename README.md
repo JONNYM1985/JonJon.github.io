@@ -24,7 +24,6 @@
         }
         @keyframes pulse { 0%, 100% { opacity: 0.2; } 50% { opacity: 0.5; } }
 
-        /* GLASS MORPHISM */
         .glass { 
             background: rgba(255, 255, 255, 0.02); 
             backdrop-filter: blur(25px); 
@@ -35,15 +34,14 @@
 
         /* AUTO-SCROLLING GALLERY */
         .gallery-track {
-            display: flex; width: calc(250px * 10);
-            animation: scroll-gallery 30s linear infinite;
+            display: flex; width: calc(300px * 10);
+            animation: scroll-gallery 25s linear infinite;
         }
         @keyframes scroll-gallery {
             0% { transform: translateX(0); }
-            100% { transform: translateX(calc(-250px * 5)); }
+            100% { transform: translateX(calc(-300px * 5)); }
         }
 
-        /* GLITCH TEXT */
         .glitch { animation: glitch 1s linear infinite; text-shadow: 2px 0 #ff00ff, -2px 0 #00ffff; }
         @keyframes glitch {
             2%, 64% { transform: translate(2px,0) skew(0deg); }
@@ -54,7 +52,7 @@
         .ticker { white-space: nowrap; animation: ticker-move 40s linear infinite; }
         @keyframes ticker-move { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
 
-        #overlay { position: fixed; inset: 0; background: black; z-index: 9999; display: flex; align-items: center; justify-content: center; cursor: crosshair; }
+        #overlay { position: fixed; inset: 0; background: black; z-index: 9999; display: flex; align-items: center; justify-content: center; cursor: pointer; }
     </style>
 </head>
 <body class="min-h-screen">
@@ -63,33 +61,33 @@
 
     <div id="overlay" onclick="this.style.display='none'">
         <div class="text-center">
-            <h1 class="text-6xl font-sync font-black tracking-widest glitch">OVERLOAD</h1>
-            <p class="mt-4 text-xs font-mono tracking-[1em] text-purple-500 uppercase">Click to bypass firewall</p>
+            <h1 class="text-6xl font-sync font-black tracking-widest glitch uppercase">Accessing Nexus</h1>
+            <p class="mt-4 text-xs font-mono tracking-[1em] text-purple-500 uppercase">Bypass Firewall Activated</p>
         </div>
     </div>
 
     <div class="w-full bg-white/5 border-b border-white/10 py-2 overflow-hidden sticky top-0 z-50 backdrop-blur-xl">
         <div class="ticker font-mono text-[10px] tracking-widest uppercase">
             ESTABLISHED 2026 // 999 FOREVER // OVO SOUND SYSTEM // CONNECTING TO THE VOID // NO NEGATIVITY // LEGENDS NEVER DIE // 
-            ESTABLISHED 2026 // 999 FOREVER // OVO SOUND SYSTEM // CONNECTING TO THE VOID // NO NEGATIVITY // LEGENDS NEVER DIE //
         </div>
     </div>
 
     <header class="flex flex-col items-center justify-center text-center pt-20 pb-12 px-6">
         <img src="logo.png" alt="Sticker" class="w-64 md:w-96 drop-shadow-[0_0_60px_rgba(168,85,247,0.7)] mb-8 hover:scale-110 transition-transform">
-        <h1 class="text-5xl md:text-9xl font-sync font-black tracking-tighter uppercase italic leading-none">
+        <h1 class="text-5xl md:text-9xl font-sync font-black tracking-tighter uppercase leading-none italic">
             The Inner Circle
         </h1>
-        <p class="mt-6 font-mono text-purple-400 animate-pulse tracking-widest text-xs uppercase">Level 10 Encryption Active</p>
     </header>
 
     <section class="w-full py-10 overflow-hidden bg-white/5 border-y border-white/10 mb-12">
-        <div class="gallery-track gap-4 px-4">
-            <img src="https://images.unsplash.com/photo-1619983081563-430f63602796?auto=format&fit=crop&w=300&q=80" class="w-[250px] h-[350px] object-cover rounded-xl border border-purple-500/50 grayscale hover:grayscale-0 transition duration-700">
-            <img src="https://images.unsplash.com/photo-1493225255756-d9584f8606e9?auto=format&fit=crop&w=300&q=80" class="w-[250px] h-[350px] object-cover rounded-xl border border-blue-500/50 grayscale hover:grayscale-0 transition duration-700">
-            <img src="https://images.unsplash.com/photo-1514525253361-bee8718a74a2?auto=format&fit=crop&w=300&q=80" class="w-[250px] h-[350px] object-cover rounded-xl border border-pink-500/50 grayscale hover:grayscale-0 transition duration-700">
-            <img src="https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?auto=format&fit=crop&w=300&q=80" class="w-[250px] h-[350px] object-cover rounded-xl border border-purple-500/50 grayscale hover:grayscale-0 transition duration-700">
-            <img src="https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=300&q=80" class="w-[250px] h-[350px] object-cover rounded-xl border border-blue-500/50 grayscale hover:grayscale-0 transition duration-700">
+        <div class="gallery-track gap-6 px-4">
+            <img src="https://wallpapers.com/images/hd/juice-wrld-aesthetic-purple-0msh1h5s8q2r6l1q.jpg" class="w-[300px] h-[400px] object-cover rounded-2xl border border-purple-500/50 shadow-2xl">
+            <img src="https://i.pinimg.com/736x/8d/6d/4e/8d6d4e3e3b7b4b7b4b7b4b7b4b7b4b7b.jpg" class="w-[300px] h-[400px] object-cover rounded-2xl border border-blue-500/50 shadow-2xl">
+            <img src="https://i.pinimg.com/originals/99/9e/42/999e4288b48866a261a84f509e4f50a2.jpg" class="w-[300px] h-[400px] object-cover rounded-2xl border border-purple-500/50 shadow-2xl">
+            <img src="https://i.pinimg.com/736x/4c/8d/6d/4c8d6d4e3e3b7b4b7b4b7b4b7b4b7b4b.jpg" class="w-[300px] h-[400px] object-cover rounded-2xl border border-blue-500/50 shadow-2xl">
+            <div class="w-[300px] h-[400px] bg-gradient-to-br from-purple-900 to-yellow-600 rounded-2xl flex items-center justify-center p-6 text-center border border-white/20">
+                <p class="font-sync text-2xl font-black italic">999 <br> X <br> OVO</p>
+            </div>
         </div>
     </section>
 
@@ -103,15 +101,15 @@
         <div class="glass p-6 text-center border-t-2 border-green-500">
             <h3 class="font-sync text-[10px] mb-4 text-gray-500">SYSTEM HEALTH</h3>
             <div class="text-4xl font-black text-green-400 mb-2 uppercase">Online</div>
-            <div class="text-[10px] font-mono text-gray-600">UPTIME: 99.9%</div>
+            <div class="text-[10px] font-mono text-gray-600 tracking-widest">UPTIME 99.9%</div>
         </div>
 
         <div class="glass p-6 border-r-8 border-blue-600">
-            <h3 class="font-sync text-[10px] mb-4 text-blue-400">UPTIME SESSION</h3>
-            <div class="space-y-2 font-mono text-xs">
-                <p>TUESDAYS: ACTIVE</p>
-                <p>THURSDAYS: OPTIONAL</p>
-                <p>WEEKENDS: BI-WEEKLY</p>
+            <h3 class="font-sync text-[10px] mb-4 text-blue-400 uppercase">Uptime Session</h3>
+            <div class="space-y-2 font-mono text-[10px]">
+                <p>TUESDAYS ACTIVE</p>
+                <p>SOMETIMES THURSDAYS</p>
+                <p>EVERY OTHER WEEKEND</p>
             </div>
         </div>
 
@@ -129,44 +127,44 @@
             <div class="flex items-center gap-4">
                 <div class="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center font-bold">AM</div>
                 <div>
-                    <p class="font-sync text-sm">Aubrey D Graham</p>
-                    <p class="text-[10px] font-mono opacity-50">Co-Owner / Mikey</p>
+                    <p class="font-sync text-sm leading-none mb-1">Aubrey D Graham</p>
+                    <p class="text-[10px] font-mono opacity-50">Co-Owner</p>
+                    <p class="text-[10px] font-mono opacity-50">Mikey</p>
                 </div>
             </div>
         </div>
 
         <div class="glass p-8 md:col-span-2 grid grid-cols-3 gap-4">
-            <div class="text-center p-2 border border-white/5 rounded-lg">
-                <p class="text-[10px] font-mono text-purple-400">01</p>
-                <p class="text-xs font-sync">MCDONALD'S</p>
+            <div class="text-center p-2 border border-white/5 rounded-lg flex flex-col justify-center">
+                <p class="text-[9px] font-mono text-purple-400 tracking-widest">01 HANG</p>
+                <p class="text-[10px] font-sync uppercase">McDonald's</p>
             </div>
-            <div class="text-center p-2 border border-white/5 rounded-lg">
-                <p class="text-[10px] font-mono text-blue-400">02</p>
-                <p class="text-xs font-sync">OPTIMIZE BOX</p>
+            <div class="text-center p-2 border border-white/5 rounded-lg flex flex-col justify-center">
+                <p class="text-[9px] font-mono text-blue-400 tracking-widest">02 UTILITY</p>
+                <p class="text-[10px] font-sync uppercase">Optimize Box</p>
             </div>
-            <div class="text-center p-2 border border-white/5 rounded-lg">
-                <p class="text-[10px] font-mono text-red-400">03</p>
-                <p class="text-xs font-sync">AMONG US</p>
+            <div class="text-center p-2 border border-white/5 rounded-lg flex flex-col justify-center">
+                <p class="text-[9px] font-mono text-red-400 tracking-widest">03 REC</p>
+                <p class="text-[10px] font-sync uppercase">Among Us</p>
             </div>
         </div>
 
-        <div class="glass p-6 md:col-span-4 font-mono text-[10px] text-gray-500 h-32 overflow-hidden">
-            <p>> BOOTING JON_JON_NEXUS...</p>
-            <p>> LOADING 999_JUICE_WRLD_DATABASE... [SUCCESS]</p>
-            <p>> LOADING OVO_SOUND_LIBS... [SUCCESS]</p>
-            <p>> SCANNING FOR NEGATIVITY... [0 FOUND]</p>
-            <p>> INITIALIZING VIBE PROTOCOL...</p>
-            <p>> STATUS: THE INNER CIRCLE IS LIVE.</p>
+        <div class="glass p-6 md:col-span-4 font-mono text-[10px] text-gray-500 h-32 overflow-hidden leading-relaxed">
+            <p>> BOOTING JON JON NEXUS...</p>
+            <p>> 999 JUICE WRLD DATABASE LOADED [VERIFIED]</p>
+            <p>> OVO SOUND LIBS LOADED [VERIFIED]</p>
+            <p>> SCANNING FOR NEGATIVITY... 0 FOUND</p>
+            <p>> SYSTEM STATUS: THE INNER CIRCLE IS LIVE.</p>
         </div>
 
     </main>
 
     <footer class="text-center py-20">
         <button onclick="window.open('https://vrchat.com/home/group/grp_e6ecca5a-828b-4706-9c23-db1723469436')" 
-                class="bg-white text-black px-12 py-6 rounded-full font-sync text-lg font-bold hover:scale-125 transition-all shadow-[0_0_50px_rgba(255,255,255,0.3)]">
-            JOIN THE COLLECTIVE
+                class="bg-white text-black px-12 py-6 rounded-full font-sync text-lg font-bold hover:scale-110 transition-all shadow-[0_0_50px_rgba(255,255,255,0.3)] uppercase">
+            Join the Collective
         </button>
-        <p class="mt-20 font-sync text-[10px] tracking-[2em] opacity-20">LEGENDS NEVER DIE</p>
+        <p class="mt-20 font-sync text-[10px] tracking-[2em] opacity-20 uppercase">Legends Never Die</p>
     </footer>
 
 </body>
