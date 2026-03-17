@@ -7,169 +7,225 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Inter:wght@300;900&family=Space+Mono&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Inter', sans-serif; background: #000; color: white; margin: 0; overflow-x: hidden; }
+        body { font-family: 'Inter', sans-serif; background: #05000a; color: white; margin: 0; overflow-x: hidden; }
         .font-sync { font-family: 'Syncopate', sans-serif; }
         .font-mono { font-family: 'Space Mono', monospace; }
 
-        /* 1. ENTRY SCREEN */
-        #overlay { 
-            position: fixed; inset: 0; 
-            background: radial-gradient(circle at center, #110022 0%, #000000 100%); 
-            z-index: 9999; display: flex; align-items: center; justify-content: center; cursor: pointer; 
+        /* --- THE 5-MINUTE COLOR DRIFT --- */
+        .tropical-bg {
+            position: fixed; inset: 0; z-index: -2;
+            background: linear-gradient(to bottom, #0f0c29, #24243e);
+            animation: sky-drift 300s ease-in-out infinite alternate;
         }
 
-        /* 2. LOADING SCREEN - RESPONSIVE STACKING */
-        #loading-screen {
-            position: fixed; inset: 0; background: #000; z-index: 9998;
-            display: none; flex-direction: column; align-items: center; justify-content: center;
-            transition: opacity 1.5s ease;
+        @keyframes sky-drift {
+            0% { background-color: #0f0c29; } /* Deep Blue */
+            100% { background-color: #240b36; } /* Lucid Purple */
         }
+
+        /* TROPICAL NOIR ELEMENTS */
+        .palm-silhouette { position: fixed; bottom: -50px; opacity: 0.15; z-index: -1; pointer-events: none; filter: blur(2px); }
+        .palm-left { left: -5%; width: 40%; animation: sway 8s ease-in-out infinite; }
+        .palm-right { right: -5%; width: 35%; animation: sway 10s ease-in-out infinite reverse; }
+        @keyframes sway { 0%, 100% { transform: rotate(-2deg) translateY(0); } 50% { transform: rotate(3deg) translateY(-10px); } }
+        
+        .ocean-mist { position: fixed; inset: 0; z-index: -1; background: radial-gradient(circle at 50% 120%, rgba(0, 255, 255, 0.05) 0%, transparent 50%); animation: pulse-mist 10s infinite alternate; }
+        @keyframes pulse-mist { from { opacity: 0.2; } to { opacity: 0.5; } }
+
+        /* ENTRY & LOADING */
+        #overlay { position: fixed; inset: 0; background: #000; z-index: 9999; display: flex; align-items: center; justify-content: center; cursor: pointer; }
+        #loading-screen { position: fixed; inset: 0; background: #000; z-index: 9998; display: none; flex-direction: column; align-items: center; justify-content: center; transition: opacity 1.5s ease; }
         @media (min-width: 768px) { #loading-screen { flex-direction: row; } }
 
-        .logo-frame {
-            width: 120px; height: 120px;
-            overflow: hidden; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            background: black; border: 2px solid rgba(255,255,255,0.1);
-            margin: 20px;
-        }
-
-        .juice-img { width: 110%; height: auto; animation: pulse-logo 2s infinite; mix-blend-mode: screen; }
+        .logo-frame { width: 130px; height: 130px; overflow: hidden; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: black; border: 2px solid rgba(255,255,255,0.1); margin: 20px; }
+        .juice-img { width: 115%; height: auto; animation: pulse-logo 2s infinite; mix-blend-mode: screen; }
         .ovo-img { width: 100%; height: auto; animation: spin-logo 10s linear infinite; mix-blend-mode: screen; }
-
         @keyframes pulse-logo { 0%, 100% { transform: scale(0.95); opacity: 0.7; } 50% { transform: scale(1.05); opacity: 1; } }
         @keyframes spin-logo { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 
-        /* 3. MAIN SITE FADE IN */
-        #main-wrapper { opacity: 0; transition: opacity 3s ease-in-out; }
+        /* MAIN WRAPPER */
+        #main-wrapper { opacity: 0; transition: opacity 2s ease-in-out; }
+        .glass { background: rgba(0, 0, 0, 0.5); backdrop-filter: blur(25px); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 1.5rem; }
+        .active-day { background: rgba(188, 19, 254, 0.2); border: 1px solid #bc13fe !important; color: #bc13fe; box-shadow: 0 0 25px rgba(188, 19, 254, 0.3); }
 
-        .overload-bg { position: fixed; inset: 0; z-index: -2; background: radial-gradient(circle at 50% 50%, #1e1b4b, #000, #000); }
-        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 1.5rem; }
-        
-        /* GALLERY SCROLLING */
-        .gallery-track { display: flex; width: max-content; animation: scroll-gallery 50s linear infinite; }
-        @keyframes scroll-gallery { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-        .gallery-item { width: 260px; height: 350px; flex-shrink: 0; border-radius: 1rem; border: 1px solid rgba(255, 255, 255, 0.1); overflow: hidden; cursor: pointer; transition: transform 0.3s; }
-        .gallery-item:active { transform: scale(0.95); }
-        .gallery-item img { width: 100%; height: 100%; object-fit: cover; }
-
-        /* FLASH EFFECT LAYER */
-        #easter-flash { position: fixed; inset: 0; z-index: 9000; opacity: 0; pointer-events: none; transition: opacity 0.2s; }
-        .flash-active { opacity: 0.5 !important; }
-
-        .ticker { white-space: nowrap; animation: ticker-move 30s linear infinite; }
+        .ticker { white-space: nowrap; animation: ticker-move 35s linear infinite; }
         @keyframes ticker-move { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
+        .gallery-track { display: flex; width: max-content; animation: scroll-gallery 60s linear infinite; }
+        @keyframes scroll-gallery { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+        .gallery-item { width: 280px; height: 380px; flex-shrink: 0; border-radius: 1rem; border: 1px solid rgba(255, 255, 255, 0.1); overflow: hidden; cursor: pointer; transition: 0.4s; }
+        .gallery-item:hover { border-color: #bc13fe; transform: translateY(-10px); }
+
+        /* MUSIC BAR */
+        .music-bar { position: fixed; bottom: 0; left: 0; right: 0; background: rgba(0, 0, 0, 0.9); backdrop-filter: blur(20px); border-top: 1px solid rgba(255, 255, 255, 0.1); padding: 15px 25px; display: flex; align-items: center; justify-content: space-between; z-index: 100; }
+        .live-dot { width: 8px; height: 8px; background: #ff0055; border-radius: 50%; margin-right: 12px; animation: blink 1.5s infinite; }
+        @keyframes blink { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.4; transform: scale(1.2); } }
+        
+        .visualizer { display: flex; align-items: flex-end; gap: 2px; height: 12px; margin-left: 15px; }
+        .bar { width: 3px; background: #00ffff; animation: equalize 1s ease-in-out infinite; }
+        .bar:nth-child(1) { height: 60%; animation-duration: 0.8s; }
+        .bar:nth-child(2) { height: 100%; animation-duration: 1.2s; }
+        .bar:nth-child(3) { height: 40%; animation-duration: 0.9s; }
+        @keyframes equalize { 0%, 100% { transform: scaleY(0.5); } 50% { transform: scaleY(1); } }
+
+        #easter-flash { position: fixed; inset: 0; z-index: 9000; opacity: 0; pointer-events: none; transition: 0.2s; }
+        .flash-active { opacity: 0.4 !important; }
+        .btn-glow { transition: 0.4s; box-shadow: 0 0 10px rgba(188, 19, 254, 0); }
+        .btn-glow:hover { box-shadow: 0 0 40px rgba(188, 19, 254, 0.8); background: #bc13fe !important; color: white !important; }
     </style>
 </head>
 <body>
 
     <div id="easter-flash"></div>
+    <div class="tropical-bg"></div>
+    <div class="ocean-mist"></div>
+    
+    <svg class="palm-silhouette palm-left" viewBox="0 0 512 512" fill="black"><path d="M480 448c-100-30-150-120-150-120s-20-40-20-100c0-80 50-150 50-150S300 120 256 200c-44-80-104-122-104-122s50 70 50 150c0 60-20 100-20 100S132 418 32 448h448z"/></svg>
+    <svg class="palm-silhouette palm-right" viewBox="0 0 512 512" fill="black"><path d="M480 448c-100-30-150-120-150-120s-20-40-20-100c0-80 50-150 50-150S300 120 256 200c-44-80-104-122-104-122s50 70 50 150c0 60-20 100-20 100S132 418 32 448h448z"/></svg>
 
     <div id="overlay" onclick="startLoading()">
         <div class="text-center px-6">
-            <h1 class="text-3xl md:text-6xl font-sync font-black uppercase italic text-white tracking-tighter">Searching for the Light</h1>
-            <p class="mt-4 text-purple-500 font-mono text-xs tracking-widest uppercase">Tap to Transcend</p>
+            <h1 class="text-5xl md:text-8xl font-sync font-black uppercase italic text-white tracking-tighter">Searching for the Light</h1>
+            <p class="mt-4 text-cyan-400 font-mono text-xs tracking-[1em] uppercase opacity-70">Tap to Transcend</p>
         </div>
     </div>
 
     <div id="loading-screen">
-        <div class="logo-frame" style="box-shadow: 0 0 40px #bc13fe;">
-            <img src="juice-999.jpg" class="juice-img" alt="999">
+        <div class="logo-frame" style="box-shadow: 0 0 50px #bc13fe;">
+            <img src="st,small,507x507-pad,600x600,f8f8f8.u2.jpg" class="juice-img">
         </div>
-        
         <div class="flex flex-col items-center mx-10">
-            <div class="w-40 h-[1px] bg-white/20 relative">
-                <div id="progress-bar" class="absolute inset-y-0 left-0 bg-white" style="width: 0%"></div>
-            </div>
-            <p id="load-text" class="mt-4 font-mono text-[10px] tracking-[0.8em] text-gray-500 uppercase">Syncing...</p>
+            <div class="w-48 h-[2px] bg-white/10 relative"><div id="progress-bar" class="absolute inset-y-0 left-0 bg-cyan-400" style="width: 0%"></div></div>
+            <p class="mt-6 font-mono text-[10px] tracking-[0.8em] text-cyan-400 uppercase">Synchronizing Duality...</p>
         </div>
-
-        <div class="logo-frame" style="box-shadow: 0 0 40px #fbbf24;">
-            <img src="ovo-owl.png" class="ovo-img" alt="OVO">
+        <div class="logo-frame" style="box-shadow: 0 0 50px #fbbf24;">
+            <img src="drake-juicy-j-ovo-owl-11563499796p8md9xraom.png" class="ovo-img">
         </div>
     </div>
 
     <div id="main-wrapper">
-        <div class="overload-bg"></div>
-
-        <div class="w-full bg-black/80 border-b border-white/10 py-2 overflow-hidden sticky top-0 z-50">
-            <div class="ticker font-mono text-[9px] tracking-widest uppercase font-bold text-purple-400 italic">999 FOREVER // OVO SOUND SYSTEM // CONNECTING... // NO NEGATIVITY // </div>
+        <div class="w-full bg-black/40 backdrop-blur-md border-b border-white/10 py-3 overflow-hidden sticky top-0 z-50">
+            <div class="ticker font-mono text-[10px] tracking-[0.5em] uppercase font-bold text-cyan-400 italic">999 x OVO // THE NEXUS IS LIVE // NO NEGATIVITY // </div>
         </div>
 
-        <header class="flex flex-col items-center pt-12 pb-8 px-6 text-center">
-            <img src="logo.png" alt="Sticker" class="w-48 md:w-72 mb-6 drop-shadow-[0_0_40px_rgba(168,85,247,0.6)]">
-            <h1 class="text-4xl md:text-7xl font-sync font-bold uppercase italic tracking-tighter">The Inner Circle</h1>
+        <header class="flex flex-col items-center pt-24 pb-12 px-6 text-center">
+            <img src="logo.png" alt="Sticker" class="w-56 md:w-80 mb-10 drop-shadow-[0_0_80px_rgba(0,255,255,0.4)]">
+            <h1 class="text-6xl md:text-9xl font-sync font-bold uppercase italic tracking-tighter">The Inner Circle</h1>
         </header>
 
-        <section class="w-full py-8 overflow-hidden bg-white/5 border-y border-white/5 mb-8">
-            <div class="gallery-track gap-4 px-4">
+        <section class="w-full py-12 overflow-hidden bg-black/20 border-y border-white/5 mb-16">
+            <div class="gallery-track gap-6 px-4">
                 <div class="gallery-item" onclick="ovoEffect()"><img src="drake1.jpg"></div>
+                <div class="gallery-item" onclick="paradoxEffect()"><img src="juice1.jpg"></div>
                 <div class="gallery-item" onclick="ovoEffect()"><img src="drake2.jpg"></div>
-                <div class="gallery-item" onclick="ovoEffect()"><img src="drake3.jpg"></div>
-                <div class="gallery-item" onclick="paradoxEffect()"><img src="juice1.jpg"></div>
                 <div class="gallery-item" onclick="paradoxEffect()"><img src="juice2.jpg"></div>
-                <div class="gallery-item" onclick="paradoxEffect()"><img src="juice3.jpg"></div>
-                <div class="gallery-item" onclick="paradoxEffect()"><img src="juice4.jpg"></div>
-                <div class="gallery-item" onclick="ovoEffect()"><img src="drake1.jpg"></div>
-                <div class="gallery-item" onclick="paradoxEffect()"><img src="juice1.jpg"></div>
             </div>
         </section>
 
-        <main class="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-4 pb-24">
-            <div class="glass p-8 md:col-span-2 border-l-4 border-purple-600">
-                <h3 class="font-sync text-[10px] mb-4 text-purple-400 uppercase tracking-widest">Core Mission</h3>
-                <p class="text-xl md:text-2xl font-light italic text-white/90">"Turning negativity into something positive. Late night melodies, palm trees, and the family that never sleeps."</p>
+        <main class="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-6 pb-48">
+            <div class="glass p-10 md:col-span-2 border-l-4 border-cyan-400">
+                <h3 class="font-sync text-[10px] mb-6 text-cyan-400 uppercase tracking-[0.3em]">Core Mission</h3>
+                <p class="text-2xl md:text-3xl font-light italic text-white/90 italic">"Turning negativity into something positive. Late night melodies, palm trees, and the family that never sleeps."</p>
             </div>
 
-            <div class="glass p-6 text-center border-t-2 border-green-500">
+            <div class="glass p-6 text-center border-t-2 border-green-400">
                 <h3 class="font-sync text-[10px] mb-2 text-gray-500 uppercase">System Status</h3>
-                <div class="text-3xl font-black text-green-400 uppercase">Online</div>
-                <p class="text-[9px] font-mono text-gray-600 uppercase">Uptime 99.9%</p>
+                <div id="current-status" class="text-4xl font-black text-green-400 uppercase italic">Online</div>
+                <p id="status-subtext" class="text-[9px] font-mono text-gray-400 uppercase mt-2 italic tracking-widest">Active Protocol</p>
             </div>
 
-            <div class="glass p-6 border-r-4 border-blue-600">
-                <h3 class="font-sync text-[10px] mb-4 text-blue-400 uppercase font-bold">Session</h3>
-                <p class="font-mono text-[10px] uppercase text-white/70">Tuesdays Active<br>Thursdays Variable<br>Weekend Collective</p>
+            <div class="glass p-6 border-r-4 border-purple-500 flex flex-col gap-3">
+                <h3 class="font-sync text-[10px] mb-2 text-purple-400 uppercase font-bold italic tracking-widest">Schedule</h3>
+                <div id="day-tue" class="p-3 rounded font-mono text-[10px] uppercase border border-white/5 transition-all">Every Tuesday</div>
+                <div id="day-thu" class="p-3 rounded font-mono text-[10px] uppercase border border-white/5 transition-all">Sometimes on Thursday</div>
+                <div id="day-wknd" class="p-3 rounded font-mono text-[10px] uppercase border border-white/5 transition-all">Every other Weekend</div>
             </div>
 
-            <div class="glass p-6 flex items-center gap-4">
-                <div class="w-10 h-10 bg-purple-600 rounded-full flex items-center justify-center font-bold text-xs">JJ</div>
+            <div class="glass p-8 flex items-center gap-5 border border-white/5">
+                <div class="w-14 h-14 bg-gradient-to-tr from-purple-600 to-cyan-600 rounded-full flex items-center justify-center font-bold text-lg">JJ</div>
                 <div>
-                    <p class="font-sync text-xs italic">Jon Jon</p>
-                    <p class="text-[9px] font-mono text-purple-400 uppercase font-bold">Owner</p>
-                    <p class="text-[8px] font-mono opacity-40 uppercase">JonnyM85</p>
+                    <p class="font-sync text-sm italic">Jon Jon</p>
+                    <p class="text-[10px] font-mono text-purple-400 uppercase font-black">Owner</p>
+                    <p class="text-[8px] font-mono opacity-50 uppercase mt-1">JonnyM85</p>
                 </div>
             </div>
 
-            <div class="glass p-6 flex items-center gap-4">
-                <div class="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center font-bold text-xs">AM</div>
+            <div class="glass p-8 flex items-center gap-5 border border-white/5">
+                <div class="w-14 h-14 bg-gradient-to-tr from-blue-600 to-indigo-600 rounded-full flex items-center justify-center font-bold text-lg">AM</div>
                 <div>
-                    <p class="font-sync text-xs italic">Aubrey Graham</p>
-                    <p class="text-[9px] font-mono text-blue-400 uppercase font-bold">Co-Owner</p>
-                    <p class="text-[8px] font-mono opacity-40 uppercase">Mikey</p>
+                    <p class="font-sync text-sm italic">Aubrey Graham</p>
+                    <p class="text-[10px] font-mono text-blue-400 uppercase font-black">Co-Owner</p>
+                    <p class="text-[8px] font-mono opacity-50 uppercase mt-1">Mikey</p>
                 </div>
             </div>
 
-            <div class="glass p-6 md:col-span-2 grid grid-cols-3 gap-2">
-                <div class="text-center"><p class="text-[8px] font-mono text-gray-500 uppercase">01</p><p class="text-[10px] font-sync uppercase italic">McDonald's</p></div>
-                <div class="text-center"><p class="text-[8px] font-mono text-gray-500 uppercase">02</p><p class="text-[10px] font-sync uppercase italic">Optimize Box</p></div>
-                <div class="text-center"><p class="text-[8px] font-mono text-gray-500 uppercase">03</p><p class="text-[10px] font-sync uppercase italic">Among Us</p></div>
+            <div class="glass p-8 md:col-span-2 grid grid-cols-3 gap-4">
+                <div class="text-center group"><p class="text-[10px] font-sync uppercase italic group-hover:text-cyan-400 transition-colors">McDonald's</p></div>
+                <div class="text-center group"><p class="text-[10px] font-sync uppercase italic group-hover:text-cyan-400 transition-colors">Optimize Box</p></div>
+                <div class="text-center group"><p class="text-[10px] font-sync uppercase italic group-hover:text-cyan-400 transition-colors">Among Us</p></div>
             </div>
         </main>
 
-        <footer class="text-center pb-20">
-            <button onclick="window.open('https://vrchat.com/home/group/grp_e6ecca5a-828b-4706-9c23-db1723469436')" class="bg-white text-black px-10 py-5 rounded-full font-sync text-sm font-bold uppercase italic hover:scale-105 transition-transform">Join Collective</button>
-            <p class="mt-12 font-sync text-[8px] tracking-[1.5em] opacity-20 uppercase">Legends Never Die</p>
+        <footer class="text-center pb-48">
+            <button onclick="window.open('https://vrchat.com/home/group/grp_e6ecca5a-828b-4706-9c23-db1723469436')" class="btn-glow bg-white text-black px-16 py-6 rounded-full font-sync text-lg font-bold uppercase italic hover:scale-105 transition-transform">Join Collective</button>
+            <p class="mt-24 font-sync text-[10px] tracking-[2.5em] opacity-20 uppercase">Legends Never Die</p>
         </footer>
+
+        <div class="music-bar">
+            <div class="flex items-center">
+                <div class="live-dot"></div>
+                <div class="flex flex-col">
+                    <span class="text-[7px] font-sync text-gray-500 uppercase tracking-widest">Broadcasting Live</span>
+                    <div class="flex items-center">
+                        <span class="text-[11px] font-mono text-cyan-400 uppercase italic">999 x OVO: Tropical Paradox Sessions</span>
+                        <div class="visualizer">
+                            <div class="bar"></div>
+                            <div class="bar"></div>
+                            <div class="bar"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="hidden md:flex gap-4">
+                <div class="h-4 w-[1px] bg-white/20"></div>
+                <span class="text-[10px] font-mono text-purple-400 tracking-tighter">FLAC 24-BIT // 128BPM</span>
+            </div>
+        </div>
     </div>
 
     <script>
+        function updateSchedule() {
+            const now = new Date();
+            const day = now.getDay();
+            const tue = document.getElementById('day-tue');
+            const thu = document.getElementById('day-thu');
+            const wknd = document.getElementById('day-wknd');
+            const status = document.getElementById('current-status');
+            const subtext = document.getElementById('status-subtext');
+
+            if (day === 2) { 
+                tue.classList.add('active-day');
+                status.innerText = "ACTIVE";
+                subtext.innerText = "Tuesday Sync Live";
+            } else if (day === 4) { 
+                thu.classList.add('active-day');
+                status.innerText = "SYNCED";
+                subtext.innerText = "Thursday Mode";
+            } else if (day === 0 || day === 6) { 
+                wknd.classList.add('active-day');
+                status.innerText = "WEEKEND";
+                subtext.innerText = "Collective Mode";
+            } else {
+                status.innerText = "STANDBY";
+                subtext.innerText = "Next sync: Tuesday";
+            }
+        }
+
         function startLoading() {
             document.getElementById('overlay').style.display = 'none';
             const loadScreen = document.getElementById('loading-screen');
             const progress = document.getElementById('progress-bar');
-            const main = document.getElementById('main-wrapper');
             loadScreen.style.display = 'flex';
+            updateSchedule();
 
             let width = 0;
             const interval = setInterval(() => {
@@ -179,27 +235,24 @@
                         loadScreen.style.opacity = '0'; 
                         setTimeout(() => { 
                             loadScreen.style.display = 'none'; 
-                            main.style.opacity = '1';
-                        }, 1500);
+                            document.getElementById('main-wrapper').style.opacity = '1';
+                        }, 1000);
                     }, 500);
                 } else {
                     width += Math.random() * 8;
                     progress.style.width = width + '%';
                 }
-            }, 150);
+            }, 100);
         }
 
-        const flash = document.getElementById('easter-flash');
-        // FLASH PURPLE FOR JUICE
         function paradoxEffect() {
-            flash.style.background = '#bc13fe';
-            flash.classList.add('flash-active');
+            const flash = document.getElementById('easter-flash');
+            flash.style.background = '#bc13fe'; flash.classList.add('flash-active');
             setTimeout(() => flash.classList.remove('flash-active'), 300);
         }
-        // FLASH GOLD FOR DRAKE
         function ovoEffect() {
-            flash.style.background = '#fbbf24';
-            flash.classList.add('flash-active');
+            const flash = document.getElementById('easter-flash');
+            flash.style.background = '#fbbf24'; flash.classList.add('flash-active');
             setTimeout(() => flash.classList.remove('flash-active'), 300);
         }
     </script>
