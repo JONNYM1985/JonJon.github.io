@@ -11,18 +11,14 @@
         .font-sync { font-family: 'Syncopate', sans-serif; }
         .font-mono { font-family: 'Space Mono', monospace; }
 
-        /* 1. THE 5-MINUTE COLOR DRIFT */
+        /* 1. TROPICAL DYNAMICS */
         .tropical-bg {
             position: fixed; inset: 0; z-index: -2;
             background: linear-gradient(to bottom, #0f0c29, #24243e);
             animation: sky-drift 300s ease-in-out infinite alternate;
         }
-        @keyframes sky-drift {
-            0% { background-color: #0f0c29; } 
-            100% { background-color: #240b36; } 
-        }
+        @keyframes sky-drift { 0% { background-color: #0f0c29; } 100% { background-color: #240b36; } }
 
-        /* 2. SWAYING PALMS */
         .palm-silhouette { position: fixed; bottom: -50px; opacity: 0.15; z-index: -1; pointer-events: none; filter: blur(2px); }
         .palm-left { left: -5%; width: 40%; animation: sway 8s ease-in-out infinite; }
         .palm-right { right: -5%; width: 35%; animation: sway 10s ease-in-out infinite reverse; }
@@ -30,18 +26,14 @@
         
         .ocean-mist { position: fixed; inset: 0; z-index: -1; background: radial-gradient(circle at 50% 120%, rgba(0, 255, 255, 0.05) 0%, transparent 50%); animation: pulse-mist 10s infinite alternate; }
 
-        /* 3. LOGO CIRCLES */
+        /* 2. CIRCLE LOGOS */
         #overlay { position: fixed; inset: 0; background: #000; z-index: 9999; display: flex; align-items: center; justify-content: center; cursor: pointer; }
         #loading-screen { position: fixed; inset: 0; background: #000; z-index: 9998; display: none; flex-direction: column; align-items: center; justify-content: center; transition: opacity 1.5s ease; }
         @media (min-width: 768px) { #loading-screen { flex-direction: row; gap: 4rem; } }
 
         .logo-circle { 
-            width: 180px; height: 180px; 
-            border-radius: 50%; 
-            border: 3px solid rgba(255, 255, 255, 0.15);
-            overflow: hidden;
-            display: flex; align-items: center; justify-content: center;
-            background: #000;
+            width: 180px; height: 180px; border-radius: 50%; border: 3px solid rgba(255, 255, 255, 0.15);
+            overflow: hidden; display: flex; align-items: center; justify-content: center; background: #000;
             box-shadow: 0 0 40px rgba(188, 19, 254, 0.2);
         }
         .juice-img { width: 100%; height: 100%; object-fit: cover; animation: pulse-logo 2s infinite; mix-blend-mode: screen; }
@@ -49,7 +41,7 @@
         @keyframes pulse-logo { 0%, 100% { transform: scale(1); opacity: 0.8; } 50% { transform: scale(1.08); opacity: 1; } }
         @keyframes spin-logo { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 
-        /* 4. MAIN LAYOUT */
+        /* 3. LAYOUT & GLASS */
         #main-wrapper { opacity: 0; transition: opacity 2s ease-in-out; }
         .glass { background: rgba(0, 0, 0, 0.65); backdrop-filter: blur(25px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 1.5rem; }
         .active-day { background: rgba(188, 19, 254, 0.25); border: 1px solid #bc13fe !important; color: #bc13fe; box-shadow: 0 0 25px rgba(188, 19, 254, 0.3); }
@@ -62,26 +54,23 @@
         .gallery-item { width: 300px; height: 400px; flex-shrink: 0; border-radius: 1rem; border: 1px solid rgba(255, 255, 255, 0.1); overflow: hidden; }
         .gallery-item img { width: 100%; height: 100%; object-fit: cover; }
 
-        /* 5. FIX: SCHEDULE BOX ROOM */
-        .schedule-container {
-            min-width: 200px; /* Forces enough width for the word 'Schedule' */
+        /* 4. FIX: LONGER BOXES & NO-WRAP TEXT */
+        .schedule-box {
+            min-width: 260px; /* Extra width for the word Schedule */
         }
+        .no-split { white-space: nowrap; }
 
         .location-card {
-            min-height: 140px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 1.5rem;
+            min-height: 150px;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            text-align: center; padding: 1.5rem 1rem;
             transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             border: 1px solid rgba(255, 255, 255, 0.05);
             background: rgba(255,255,255,0.03);
         }
-        .location-card:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.3); transform: translateY(-5px); }
+        .location-card:hover { background: rgba(255,255,255,0.08); border-color: #bc13fe; transform: translateY(-5px); }
 
-        /* 6. MUSIC BAR */
+        /* 5. MUSIC SYSTEM */
         .music-bar { position: fixed; bottom: 0; left: 0; right: 0; background: rgba(0, 0, 0, 0.95); backdrop-filter: blur(20px); border-top: 1px solid rgba(255, 255, 255, 0.1); padding: 15px 25px; display: flex; align-items: center; justify-content: space-between; z-index: 100; }
         .visualizer { display: flex; align-items: flex-end; gap: 2px; height: 12px; }
         .bar { width: 3px; background: #00ffff; animation: equalize 1s ease-in-out infinite; }
@@ -103,7 +92,7 @@
     <div id="overlay" onclick="startLoading()">
         <div class="text-center px-6">
             <h1 class="text-5xl md:text-8xl font-sync font-black uppercase italic text-white tracking-tighter">Searching for the Light</h1>
-            <p class="mt-4 text-cyan-400 font-mono text-xs tracking-[1em] uppercase opacity-70">Tap to Enter</p>
+            <p class="mt-4 text-cyan-400 font-mono text-xs tracking-[1em] uppercase opacity-70">Tap to Enter the Nexus</p>
         </div>
     </div>
 
@@ -147,17 +136,17 @@
                 <p id="status-subtext" class="text-[9px] font-mono text-gray-600 uppercase mt-2 italic tracking-widest">Active Protocol</p>
             </div>
 
-            <div class="glass p-6 border-r-4 border-purple-500 flex flex-col gap-3 schedule-container">
-                <h3 class="font-sync text-[10px] mb-2 text-purple-400 uppercase font-bold italic tracking-widest whitespace-nowrap">Schedule</h3>
-                <div id="day-tue" class="p-3 rounded font-mono text-[10px] uppercase border border-white/5">Every Tuesday</div>
-                <div id="day-thu" class="p-3 rounded font-mono text-[10px] uppercase border border-white/5">Sometimes Thursday</div>
-                <div id="day-wknd" class="p-3 rounded font-mono text-[10px] uppercase border border-white/5">Other Weekend</div>
+            <div class="glass p-6 border-r-4 border-purple-500 flex flex-col gap-3 schedule-box">
+                <h3 class="font-sync text-[12px] mb-2 text-purple-400 uppercase font-bold italic tracking-[0.2em] no-split">Schedule</h3>
+                <div id="day-tue" class="p-3 rounded font-mono text-[10px] uppercase border border-white/5 no-split">Every Tuesday</div>
+                <div id="day-thu" class="p-3 rounded font-mono text-[10px] uppercase border border-white/5 no-split">Sometimes Thursday</div>
+                <div id="day-wknd" class="p-3 rounded font-mono text-[10px] uppercase border border-white/5 no-split">Other Weekend</div>
             </div>
 
             <div class="glass p-8 flex items-center gap-5 border border-white/5">
                 <div class="w-14 h-14 bg-gradient-to-tr from-purple-600 to-indigo-600 rounded-full flex items-center justify-center font-bold text-lg">JJ</div>
                 <div>
-                    <p class="font-sync text-sm italic">Jon Jon</p>
+                    <p class="font-sync text-sm italic no-split">Jon Jon</p>
                     <p class="text-[10px] font-mono text-purple-400 uppercase font-black">Owner</p>
                     <p class="text-[8px] font-mono opacity-50 uppercase mt-1">JonnyM85</p>
                 </div>
@@ -166,23 +155,23 @@
             <div class="glass p-8 flex items-center gap-5 border border-white/5">
                 <div class="w-14 h-14 bg-gradient-to-tr from-blue-600 to-indigo-600 rounded-full flex items-center justify-center font-bold text-lg">AM</div>
                 <div>
-                    <p class="font-sync text-sm italic">Aubrey Graham</p>
+                    <p class="font-sync text-sm italic no-split">Aubrey Graham</p>
                     <p class="text-[10px] font-mono text-blue-400 uppercase font-black">Co-Owner</p>
                     <p class="text-[8px] font-mono opacity-50 uppercase mt-1">Mikey</p>
                 </div>
             </div>
 
             <div class="glass p-8 md:col-span-2 grid grid-cols-1 md:grid-cols-3 gap-6">
-                <a href="https://vrchat.com/home/world/wrld_6b77c061-a1bf-48eb-b107-c4d944490198/info" target="_blank" class="location-card rounded-2xl">
-                    <p class="text-[11px] font-sync uppercase italic text-white tracking-widest">McDonald's</p>
+                <a href="https://vrchat.com/home/world/wrld_6b77c061-a1bf-48eb-b107-c4d944490198/info" target="_blank" class="location-card rounded-2xl group">
+                    <p class="text-[11px] font-sync uppercase italic text-white tracking-widest no-split group-hover:text-purple-400">McDonald's</p>
                     <p class="text-[8px] font-mono text-gray-500 uppercase mt-3">The Nexus Hangout</p>
                 </a>
-                <a href="https://vrchat.com/home/world/wrld_1a8b8684-3b19-4770-a4a7-288762f57b29/info" target="_blank" class="location-card rounded-2xl">
-                    <p class="text-[11px] font-sync uppercase italic text-white tracking-widest whitespace-nowrap">1's Optimized Box</p>
+                <a href="https://vrchat.com/home/world/wrld_1a8b8684-3b19-4770-a4a7-288762f57b29/info" target="_blank" class="location-card rounded-2xl group">
+                    <p class="text-[11px] font-sync uppercase italic text-white tracking-widest no-split group-hover:text-blue-400">1's Optimized Box</p>
                     <p class="text-[8px] font-mono text-gray-500 uppercase mt-3">Utility Zone</p>
                 </a>
-                <a href="https://vrchat.com/home/world/wrld_dd036610-a246-4f52-bf01-9d7cea3405d7/info" target="_blank" class="location-card rounded-2xl">
-                    <p class="text-[11px] font-sync uppercase italic text-white tracking-widest">Among Us</p>
+                <a href="https://vrchat.com/home/world/wrld_dd036610-a246-4f52-bf01-9d7cea3405d7/info" target="_blank" class="location-card rounded-2xl group">
+                    <p class="text-[11px] font-sync uppercase italic text-white tracking-widest no-split group-hover:text-red-400">Among Us</p>
                     <p class="text-[8px] font-mono text-gray-500 uppercase mt-3">Rec Zone</p>
                 </a>
             </div>
@@ -225,10 +214,7 @@
             const interval = setInterval(() => {
                 if (width >= 100) { 
                     clearInterval(interval); 
-                    setTimeout(() => { 
-                        loadScreen.style.opacity = '0'; 
-                        setTimeout(() => { loadScreen.style.display = 'none'; document.getElementById('main-wrapper').style.opacity = '1'; }, 1000); 
-                    }, 500); 
+                    setTimeout(() => { loadScreen.style.opacity = '0'; setTimeout(() => { loadScreen.style.display = 'none'; document.getElementById('main-wrapper').style.opacity = '1'; }, 1000); }, 500); 
                 } else { width += Math.random() * 10; progress.style.width = width + '%'; }
             }, 120);
         }
