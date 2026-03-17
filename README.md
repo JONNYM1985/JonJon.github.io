@@ -11,66 +11,73 @@
         .font-sync { font-family: 'Syncopate', sans-serif; }
         .font-mono { font-family: 'Space Mono', monospace; }
 
-        /* 1. ENTRY SCREEN */
+        /* INTRO OVERLAY */
         #overlay { 
             position: fixed; inset: 0; 
             background: radial-gradient(circle at center, #110022 0%, #000000 100%); 
             z-index: 9999; display: flex; align-items: center; justify-content: center; cursor: crosshair; 
         }
 
-        /* 2. LOADING SCREEN */
+        /* NEW LOADING SCREEN */
         #loading-screen {
             position: fixed; inset: 0; background: #000; z-index: 9998;
             display: none; align-items: center; justify-content: center;
-            transition: opacity 2s ease-in-out;
         }
 
-        .juice-logo {
-            width: 220px; height: auto;
-            animation: pulse-logo 2s infinite;
+        /* THE FIX: BACKGROUND REMOVAL & SIZING */
+        .loading-logo {
+            /* 1. Reset original colors (makes white background disappear against dark void) */
             mix-blend-mode: screen; 
-            filter: drop-shadow(0 0 25px #bc13fe);
+            
+            /* 2. Optional: If the mix-blend makes them too bright, force them back to black/gold */
+            /* filter: invert(1) brightness(1.5); */ /* Uncomment if they become too invisible */
+
+            /* 3. SIZE DOWN (Adjust 'max-width' if needed) */
+            max-width: 150px; 
+            height: auto; 
+            opacity: 0; /* Starts invisible for fade-in */
+            animation: fadeInLogo 1s forwards;
         }
 
-        .ovo-logo {
-            width: 220px; height: auto;
-            animation: spin-logo 8s linear infinite;
-            filter: drop-shadow(0 0 25px #fbbf24);
+        @keyframes fadeInLogo {
+            to { opacity: 1; }
         }
 
-        @keyframes pulse-logo {
-            0%, 100% { opacity: 0.5; transform: scale(0.95); }
-            50% { opacity: 1; transform: scale(1.05); }
+        /* Pulse 999 */
+        .juice-logo-fixed {
+            animation: pulse-purple 2s infinite;
+            color: #bc13fe; font-family: 'Syncopate'; font-weight: 900;
+            text-shadow: 0 0 30px #bc13fe;
         }
 
-        @keyframes spin-logo {
+        /* Spin Owl (If you are using the actual 🦉 emoji, keep this, else use the image class above) */
+        .spin-owl {
+            animation: spin-gold 4s linear infinite;
+            filter: drop-shadow(0 0 20px #fbbf24);
+        }
+
+        @keyframes pulse-purple {
+            0%, 100% { opacity: 0.3; transform: scale(0.9); }
+            50% { opacity: 1; transform: scale(1.1); }
+        }
+
+        @keyframes spin-gold {
             from { transform: rotate(0deg); }
             to { transform: rotate(360deg); }
         }
 
-        /* 3. SITE FADE-IN WRAPPER */
-        #main-wrapper {
-            opacity: 0;
-            transition: opacity 3.5s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        /* STYLING ELEMENTS */
+        /* MAIN CONTENT STYLES */
         .overload-bg { position: fixed; inset: 0; z-index: -2; background: radial-gradient(circle at 50% 50%, #1e1b4b, #000, #000); }
         .particles { position: fixed; inset: 0; z-index: -1; background-image: url('https://www.transparenttextures.com/patterns/stardust.png'); opacity: 0.3; }
         .glass { background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(25px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 1rem; }
-        
-        /* GALLERY */
-        .gallery-track { display: flex; width: calc(300px * 22); animation: scroll-gallery 45s linear infinite; }
-        @keyframes scroll-gallery { 0% { transform: translateX(0); } 100% { transform: translateX(calc(-300px * 11)); } }
-        .gallery-item { width: 300px; height: 400px; flex-shrink: 0; border-radius: 1rem; border: 1px solid rgba(255, 255, 255, 0.1); overflow: hidden; cursor: pointer; transition: 0.3s; }
-        .gallery-item:hover { border-color: rgba(255, 255, 255, 0.5); transform: scale(1.02); }
-        .gallery-item img { width: 100%; height: 100%; object-fit: cover; pointer-events: none; }
-
-        /* TICKER */
+        .gallery-track { display: flex; width: calc(300px * 20); animation: scroll-gallery 45s linear infinite; }
+        @keyframes scroll-gallery { 0% { transform: translateX(0); } 100% { transform: translateX(calc(-300px * 10)); } }
         .ticker { white-space: nowrap; animation: ticker-move 40s linear infinite; }
         @keyframes ticker-move { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
+        
+        .gallery-item { width: 300px; height: 400px; flex-shrink: 0; border-radius: 1rem; border: 1px solid rgba(255, 255, 255, 0.1); overflow: hidden; cursor: pointer; transition: 0.5s ease; }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; pointer-events: none; }
 
-        /* FLASH EFFECTS */
         #easter-flash { position: fixed; inset: 0; z-index: 9000; opacity: 0; pointer-events: none; display: flex; align-items: center; justify-content: center; }
         .flash-active { opacity: 0.4 !important; }
     </style>
@@ -81,7 +88,7 @@
 
     <div id="overlay" onclick="startLoading()">
         <div class="text-center px-10 max-w-3xl">
-            <h1 class="text-4xl md:text-6xl font-sync font-black tracking-tighter uppercase italic text-white">Searching for the Light</h1>
+            <h1 class="text-4xl md:text-6xl font-sync font-black tracking-tighter uppercase italic text-white glitch">Searching for the Light</h1>
             <p class="mt-6 text-purple-500 font-mono text-xs md:text-sm tracking-[0.5em] uppercase opacity-70">The Abyss is only scary if you're afraid to find yourself</p>
             <div class="mt-12 flex flex-col items-center gap-2">
                 <span class="w-[1px] h-16 bg-gradient-to-b from-purple-600 to-transparent animate-pulse"></span>
@@ -91,19 +98,27 @@
     </div>
 
     <div id="loading-screen">
-        <div class="flex flex-col md:flex-row items-center justify-center gap-20 w-full px-10">
-            <img src="juice-999.jpg" class="juice-logo" alt="999">
+        <div class="flex items-center justify-between w-full max-w-5xl px-20">
+            
+            <div class="juice-logo-fixed">
+                <img src="st,small,507x507-pad,600x600,f8f8f8.u2.jpg" alt="999" class="loading-logo">
+            </div>
+            
             <div class="flex flex-col items-center">
-                <div class="w-64 h-[1px] bg-white/10 overflow-hidden relative">
+                <div class="w-48 h-[2px] bg-gray-900 overflow-hidden relative">
                     <div id="progress-bar" class="absolute inset-y-0 left-0 bg-white transition-all duration-300" style="width: 0%"></div>
                 </div>
-                <p id="load-text" class="mt-6 font-mono text-[9px] tracking-[1.2em] uppercase text-gray-400 italic">Syncing Duality...</p>
+                <p id="load-text" class="mt-4 font-mono text-[10px] tracking-[1em] uppercase text-gray-500 italic">Syncing Duality...</p>
             </div>
-            <img src="ovo-owl.png" class="ovo-logo" alt="OVO">
+
+            <div class="spin-owl">
+                <img src="drake-juicy-j-ovo-owl-11563499796p8md9xraom.png" alt="OVO Owl" class="loading-logo">
+            </div>
+            
         </div>
     </div>
 
-    <div id="main-wrapper">
+    <div id="main-wrapper" class="opacity-0 transition-opacity duration-1000">
         <div class="overload-bg"></div>
         <div class="particles"></div>
 
@@ -128,50 +143,34 @@
                 <div class="gallery-item" onclick="paradoxEffect()"><img src="juice5.jpg"></div>
                 <div class="gallery-item" onclick="paradoxEffect()"><img src="juice6.jpg"></div>
                 <div class="gallery-item" onclick="paradoxEffect()"><img src="juice7.jpg"></div>
-                <div class="gallery-item" onclick="ovoEffect()"><img src="drake1.jpg"></div>
             </div>
         </section>
 
         <main class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-4 pb-32">
             <div class="glass p-8 md:col-span-2 border-l-8 border-purple-600">
-                <h3 class="font-sync text-xs mb-4 text-purple-400 uppercase tracking-widest">Core Mission</h3>
-                <p class="text-2xl font-light italic leading-snug text-white/90">"Turning negativity into something positive. Late night melodies, palm trees, and the family that never sleeps."</p>
+                <h3 class="font-sync text-xs mb-4 text-purple-400">CORE MISSION</h3>
+                <p class="text-2xl font-light italic leading-snug text-balance italic">"Turning negativity into something positive. Late night melodies, palm trees, and the family that never sleeps."</p>
             </div>
-
             <div class="glass p-6 text-center border-t-2 border-green-500">
-                <h3 class="font-sync text-[10px] mb-4 text-gray-500 uppercase">System Status</h3>
+                <h3 class="font-sync text-[10px] mb-4 text-gray-500 uppercase">System Health</h3>
                 <div class="text-4xl font-black text-green-400 mb-2 uppercase">Online</div>
                 <p class="text-[10px] font-mono text-gray-600 uppercase italic">Uptime 99.9%</p>
             </div>
-
             <div class="glass p-6 border-r-8 border-blue-600">
-                <h3 class="font-sync text-[10px] mb-4 text-blue-400 uppercase font-bold italic">Schedule</h3>
-                <p class="font-mono text-[10px] uppercase text-white/70">Tuesdays Active<br>Thursdays Variable<br>Weekend Collective</p>
+                <h3 class="font-sync text-[10px] mb-4 text-blue-400 uppercase font-bold italic">Uptime Session</h3>
+                <p class="font-mono text-[10px] uppercase">Tuesdays Active<br>Sometimes Thursdays<br>Every Other Weekend</p>
             </div>
-
-            <div class="glass p-6 border border-purple-500/20">
-                <div class="flex items-center gap-4">
-                    <div class="w-12 h-12 bg-purple-600 rounded-full flex items-center justify-center font-bold">JJ</div>
-                    <div><p class="font-sync text-sm italic">Jon Jon</p><p class="text-[10px] font-mono opacity-50 uppercase">(JonnyM85)</p></div>
-                </div>
-            </div>
-
-            <div class="glass p-6 border border-blue-500/20">
-                <div class="flex items-center gap-4">
-                    <div class="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center font-bold text-white">AM</div>
-                    <div><p class="font-sync text-sm italic mb-1">Aubrey D Graham</p><p class="text-[10px] font-mono opacity-60 uppercase">Co-Owner</p></div>
-                </div>
-            </div>
-
+            <div class="glass p-6 border border-purple-500/20"><div class="flex items-center gap-4"><div class="w-12 h-12 bg-purple-600 rounded-full flex items-center justify-center font-bold">JJ</div><div><p class="font-sync text-sm italic">Jon Jon</p><p class="text-[10px] font-mono opacity-50 uppercase">(JonnyM85)</p></div></div></div>
+            <div class="glass p-6 border border-blue-500/20"><div class="flex items-center gap-4"><div class="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center font-bold text-white">AM</div><div><p class="font-sync text-sm italic mb-1">Aubrey D Graham</p><p class="text-[10px] font-mono opacity-60 uppercase">Co-Owner / Mikey</p></div></div></div>
             <div class="glass p-8 md:col-span-2 grid grid-cols-3 gap-4 border-b border-white/5">
-                <div class="text-center p-2"><p class="text-[9px] font-mono text-purple-400 uppercase italic">01 Hang</p><p class="text-[10px] font-sync uppercase">McDonald's</p></div>
-                <div class="text-center p-2"><p class="text-[9px] font-mono text-blue-400 uppercase italic">02 Utility</p><p class="text-[10px] font-sync uppercase">Optimize Box</p></div>
-                <div class="text-center p-2"><p class="text-[9px] font-mono text-red-400 uppercase italic">03 Rec</p><p class="text-[10px] font-sync uppercase">Among Us</p></div>
+                <div class="text-center p-2"><p class="text-[9px] font-mono text-purple-400 uppercase italic">01 Hang</p><p class="text-[10px] font-sync uppercase italic">McDonald's</p></div>
+                <div class="text-center p-2"><p class="text-[9px] font-mono text-blue-400 uppercase italic">02 Utility</p><p class="text-[10px] font-sync uppercase italic">Optimize Box</p></div>
+                <div class="text-center p-2"><p class="text-[9px] font-mono text-red-400 uppercase italic">03 Rec</p><p class="text-[10px] font-sync uppercaseitalic">Among Us</p></div>
             </div>
         </main>
 
         <footer class="text-center py-20">
-            <button onclick="window.open('https://vrchat.com/home/group/grp_e6ecca5a-828b-4706-9c23-db1723469436')" class="bg-white text-black px-12 py-6 rounded-full font-sync text-lg font-bold hover:scale-110 transition-all uppercase italic">Join the Collective</button>
+            <button onclick="window.open('https://vrchat.com/home/group/grp_e6ecca5a-828b-4706-9c23-db1723469436')" class="bg-white text-black px-12 py-6 rounded-full font-sync text-lg font-bold hover:scale-110 transition-all uppercase italic">Join Collective</button>
             <p class="mt-20 font-sync text-[10px] tracking-[2em] opacity-20 uppercase">Legends Never Die</p>
         </footer>
     </div>
@@ -182,7 +181,6 @@
             const loadScreen = document.getElementById('loading-screen');
             const progress = document.getElementById('progress-bar');
             const loadText = document.getElementById('load-text');
-            const mainWrapper = document.getElementById('main-wrapper');
             loadScreen.style.display = 'flex';
 
             let width = 0;
@@ -192,10 +190,9 @@
                     loadText.innerText = "ACCESS GRANTED";
                     setTimeout(() => { 
                         loadScreen.style.opacity = '0'; 
-                        setTimeout(() => { 
-                            loadScreen.style.display = 'none'; 
-                            mainWrapper.style.opacity = '1';
-                        }, 2000);
+                        setTimeout(() => { loadScreen.style.display = 'none'; }, 500); 
+                        // Show main site
+                        document.getElementById('main-wrapper').style.opacity = '1';
                     }, 1000);
                 } else {
                     width += Math.random() * 5;
