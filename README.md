@@ -5,28 +5,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JON JON & FRIENDS | THE INNER CIRCLE</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Inter:wght@300;600;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Inter:wght@300;600;900&family=Space+Mono&display=swap" rel="stylesheet">
     <style>
         :root { --neon-purple: #bc13fe; --neon-blue: #00d2ff; }
-        body { font-family: 'Inter', sans-serif; background: #020202; color: white; overflow-x: hidden; }
+        body { font-family: 'Inter', sans-serif; background: #000; color: white; overflow-x: hidden; }
         .font-sync { font-family: 'Syncopate', sans-serif; }
+        .font-mono { font-family: 'Space Mono', monospace; }
         
         .bg-animate {
-            background: radial-gradient(circle at 50% 10%, #2e1065 0%, #020202 80%);
+            background: radial-gradient(circle at 50% 10%, #2e1065 0%, #000000 90%);
             position: fixed; inset: 0; z-index: -1;
         }
 
         .glass { 
-            background: rgba(255, 255, 255, 0.01); 
-            backdrop-filter: blur(25px); 
-            border: 1px solid rgba(255, 255, 255, 0.08); 
-            border-radius: 1.5rem;
-            transition: 0.4s ease;
+            background: rgba(255, 255, 255, 0.02); 
+            backdrop-filter: blur(30px); 
+            border: 1px solid rgba(255, 255, 255, 0.1); 
+            border-radius: 1rem;
+            transition: 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
-        .glass:hover { border-color: var(--neon-purple); transform: translateY(-5px); box-shadow: 0 10px 40px rgba(188, 19, 254, 0.15); }
+        .glass::after {
+            content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 2px;
+            background: linear-gradient(90deg, transparent, var(--neon-purple), transparent);
+            animation: scan 3s linear infinite;
+        }
+        @keyframes scan { 0% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
 
-        @keyframes pulse-border { 0% { opacity: 0.3; } 50% { opacity: 1; } 100% { opacity: 0.3; } }
-        .live-glow { animation: pulse-border 2s infinite; }
+        /* Ticker Animation */
+        @keyframes scroll { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
+        .ticker { white-space: nowrap; animation: scroll 25s linear infinite; }
 
         #overlay { position: fixed; inset: 0; background: black; z-index: 1000; display: flex; align-items: center; justify-content: center; cursor: pointer; }
     </style>
@@ -36,100 +45,117 @@
 
     <div id="overlay" onclick="this.style.display='none'">
         <div class="text-center">
-            <h1 class="text-4xl font-sync font-bold tracking-[0.5em] text-white animate-pulse uppercase">Enter the Void</h1>
-            <p class="mt-4 text-gray-500 font-mono text-xs italic tracking-widest">999 x OVO Protocol Active</p>
+            <h1 class="text-4xl font-sync font-bold tracking-[0.5em] text-white animate-pulse uppercase">INITIATING NEXUS</h1>
+            <p class="mt-4 text-purple-500 font-mono text-xs tracking-widest">[ ACCESS GRANTED ]</p>
         </div>
     </div>
 
-    <header class="flex flex-col items-center justify-center text-center py-16 px-6">
+    <div class="w-full bg-purple-900/20 border-b border-purple-500/30 py-2 overflow-hidden sticky top-0 z-50 backdrop-blur-md">
+        <div class="ticker font-mono text-[10px] tracking-widest text-purple-400 uppercase font-bold">
+            ESTABLISHED 2026 // VRC_GROUP_ID: JON_JON_FRIENDS // 999 ENERGY ACTIVE // OVO SOUND SYSTEM: ON // NO NEGATIVITY DETECTED // MEMBERS: [VERIFIED] // LEGENDS NEVER DIE // LATE NIGHT VIBES //
+        </div>
+    </div>
+
+    <header class="flex flex-col items-center justify-center text-center py-12 px-6">
         <a href="https://vrchat.com/home/group/grp_e6ecca5a-828b-4706-9c23-db1723469436" target="_blank">
-            <img src="logo.png" alt="Jon Jon Sticker" class="w-72 md:w-96 drop-shadow-[0_0_35px_rgba(188,19,254,0.4)] mb-8 hover:scale-105 transition-transform">
+            <img src="logo.png" alt="Jon Jon Sticker" class="w-64 md:w-80 drop-shadow-[0_0_40px_rgba(188,19,254,0.5)] mb-8 hover:scale-110 transition-transform cursor-pointer">
         </a>
-        <h1 class="text-6xl md:text-8xl font-sync font-bold tracking-tighter uppercase leading-none">
+        <h1 class="text-5xl md:text-8xl font-sync font-bold tracking-tighter uppercase leading-none">
             The Inner Circle
         </h1>
-        <div class="mt-6 flex items-center gap-2 px-4 py-1 bg-purple-900/30 rounded-full border border-purple-500/50">
-            <div class="w-2 h-2 rounded-full bg-green-500 live-glow"></div>
-            <span class="text-[10px] font-sync text-purple-300 tracking-widest uppercase">Live Group Status: Active</span>
-        </div>
     </header>
 
-    <main class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8 pb-24">
+    <main class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-6 pb-24">
         
-        <div class="flex flex-col gap-8">
-            <div class="glass p-8 h-64 flex flex-col justify-center">
-                <h3 class="text-purple-500 font-sync text-[12px] mb-4 tracking-widest">THE VISION</h3>
-                <p class="text-gray-400 text-sm leading-relaxed italic font-light">
+        <div class="flex flex-col gap-6">
+            <div class="glass p-8 h-64 border-l-2 border-purple-500">
+                <h3 class="text-purple-400 font-sync text-[10px] mb-4 tracking-widest flex justify-between">
+                    <span>THE VISION</span>
+                    <span class="animate-pulse">●</span>
+                </h3>
+                <p class="text-gray-300 text-sm leading-relaxed italic font-light">
                     "Late night melodies, palm trees, and the family that never sleeps. We are the elite late-night collective of VRChat."
                 </p>
+                <div class="mt-6 font-mono text-[9px] text-gray-600 uppercase">
+                    ENCRYPTION: AES-256 // VIBE_SYNC: 100%
+                </div>
             </div>
             
-            <div class="glass p-8 bg-gradient-to-b from-purple-900/10 to-transparent">
-                <h3 class="font-sync text-[12px] mb-6 text-blue-400 tracking-widest uppercase">Group Status</h3>
-                <div class="space-y-6">
-                    <div>
-                        <p class="text-[10px] text-gray-500 uppercase font-bold mb-1">Current Capacity</p>
-                        <p class="text-2xl font-sync text-white">RECRUITING</p>
+            <div class="glass p-8 bg-gradient-to-br from-blue-900/10 to-transparent">
+                <h3 class="font-sync text-[10px] mb-6 text-blue-400 tracking-widest uppercase italic">Group Metrics</h3>
+                <div class="grid grid-cols-2 gap-4 mb-6">
+                    <div class="bg-white/5 p-3 rounded-lg border border-white/5">
+                        <p class="text-[9px] text-gray-500 font-bold uppercase">Status</p>
+                        <p class="text-lg font-sync text-green-400">LIVE</p>
                     </div>
-                    <div>
-                        <p class="text-[10px] text-gray-500 uppercase font-bold mb-1">Vibe Frequency</p>
-                        <p class="text-2xl font-sync text-white">999 / OVO</p>
+                    <div class="bg-white/5 p-3 rounded-lg border border-white/5">
+                        <p class="text-[9px] text-gray-500 font-bold uppercase">Uptime</p>
+                        <p class="text-lg font-sync text-white">24/7</p>
                     </div>
+                </div>
+                <div class="font-mono text-[10px] text-gray-500 space-y-1">
+                    <p>> FREQUENCY: 432Hz</p>
+                    <p>> CORE: 999_OVO</p>
+                    <p>> REGION: GLOBAL_VR</p>
                 </div>
             </div>
         </div>
 
-        <div class="flex flex-col gap-8">
-            <div class="glass p-8 border-t-4 border-purple-600">
-                <h3 class="font-sync text-[12px] mb-8 tracking-[0.3em] text-center">STAFF DIRECTORY</h3>
+        <div class="flex flex-col gap-6">
+            <div class="glass p-8 border-t-2 border-purple-600">
+                <h3 class="font-sync text-[11px] mb-8 tracking-[0.4em] text-center text-gray-400">STAFF_DIRECTORY</h3>
                 <div class="space-y-6">
-                    <div class="flex items-center gap-4 bg-white/5 p-4 rounded-2xl border border-white/5">
-                        <div class="w-12 h-12 rounded-full bg-gradient-to-tr from-purple-600 to-pink-500 flex items-center justify-center font-bold shadow-lg">JJ</div>
+                    <div class="flex items-center gap-4 bg-white/5 p-5 rounded-xl border border-white/5 hover:bg-white/10 transition">
+                        <div class="w-12 h-12 rounded-full border border-purple-500 flex items-center justify-center font-bold text-purple-500 shadow-[0_0_10px_rgba(168,85,247,0.3)]">JJ</div>
                         <div>
                             <p class="font-sync text-sm">Jon Jon</p>
-                            <p class="text-[10px] text-purple-400 uppercase tracking-widest">Founder / Elite</p>
+                            <p class="text-[11px] text-purple-400 font-mono tracking-tighter">(JonnyM85)</p>
                         </div>
                     </div>
-                    <div class="flex items-center gap-4 bg-white/5 p-4 rounded-2xl border border-white/5">
-                        <div class="w-12 h-12 rounded-full bg-gradient-to-tr from-blue-600 to-indigo-500 flex items-center justify-center font-bold shadow-lg">AM</div>
+                    <div class="flex items-center gap-4 bg-white/5 p-5 rounded-xl border border-white/5 hover:bg-white/10 transition">
+                        <div class="w-12 h-12 rounded-full border border-blue-500 flex items-center justify-center font-bold text-blue-500 shadow-[0_0_10px_rgba(59,130,246,0.3)]">AM</div>
                         <div>
                             <p class="font-sync text-sm">Aubrey D Graham</p>
-                            <p class="text-[10px] text-blue-400 uppercase tracking-widest">Co-Owner / Mikey</p>
+                            <p class="text-[11px] text-blue-400 font-mono tracking-tighter italic">Co-Owner</p>
+                            <p class="text-[11px] text-blue-300 font-mono tracking-tighter">Mikey</p>
                         </div>
                     </div>
                 </div>
                 <button onclick="window.open('https://vrchat.com/home/group/grp_e6ecca5a-828b-4706-9c23-db1723469436')" 
-                        class="w-full mt-8 py-4 rounded-xl bg-white text-black font-sync text-xs font-bold hover:bg-purple-500 hover:text-white transition-all">
-                    APPLY FOR ACCESS
+                        class="w-full mt-10 py-4 rounded-lg bg-white text-black font-sync text-[10px] font-bold hover:bg-purple-600 hover:text-white transition-all shadow-xl">
+                    REQUEST INVITE
                 </button>
             </div>
         </div>
 
-        <div class="flex flex-col gap-8">
-            <div class="glass p-8 border-r-4 border-white/10 flex flex-col h-full">
-                <h3 class="font-sync text-[12px] mb-8 text-right tracking-widest">PORTALS</h3>
-                <div class="flex-grow space-y-4">
-                    <a href="https://vrchat.com/home/world/wrld_f8d4e7d4-8d9e-4e8c-8d3e-7e9c8d3e7e9c" target="_blank" 
-                       class="flex items-center justify-between p-5 bg-white/5 rounded-2xl hover:bg-white/10 border border-white/5 group transition-all">
-                        <span class="font-mono text-sm tracking-tighter">01. MCDONALD'S</span>
-                        <span class="text-xs opacity-0 group-hover:opacity-100 transition-opacity">JOIN →</span>
-                    </a>
-                    <a href="https://vrchat.com/home/world/wrld_a1b2c3d4-e5f6-g7h8-i9j0-k1l2m3n4o5p6" target="_blank" 
-                       class="flex items-center justify-between p-5 bg-white/5 rounded-2xl hover:bg-white/10 border border-white/5 group transition-all">
-                        <span class="font-mono text-sm tracking-tighter">02. OPTIMIZE BOX</span>
-                        <span class="text-xs opacity-0 group-hover:opacity-100 transition-opacity">JOIN →</span>
-                    </a>
+        <div class="flex flex-col gap-6">
+            <div class="glass p-8 border-r-2 border-white/10 flex flex-col h-full">
+                <h3 class="font-sync text-[10px] mb-8 text-right tracking-widest text-gray-400">MAP_DATABASE</h3>
+                <div class="flex-grow space-y-4 font-mono">
+                    <div class="p-4 bg-purple-900/10 rounded-lg border border-purple-500/20">
+                        <p class="text-[9px] text-purple-400 mb-2">// PRIMARY_HANG</p>
+                        <a href="#" class="text-sm hover:text-purple-400 transition tracking-tighter block uppercase">01. MCDONALD'S</a>
+                    </div>
+                    <div class="p-4 bg-blue-900/10 rounded-lg border border-blue-500/20">
+                        <p class="text-[9px] text-blue-400 mb-2">// UTILITY_SPACE</p>
+                        <a href="#" class="text-sm hover:text-blue-400 transition tracking-tighter block uppercase">02. OPTIMIZE BOX</a>
+                    </div>
                 </div>
-                <div class="mt-8 pt-8 border-t border-white/5 text-center">
-                    <p class="text-4xl mb-2">🌃</p>
-                    <p class="text-[10px] font-sync text-gray-500 uppercase">Legends Never Die</p>
+                <div class="mt-8 pt-6 border-t border-white/5 text-center">
+                    <div class="text-xs font-mono text-gray-600 tracking-widest mb-2 animate-pulse">TRANSMITTING...</div>
+                    <p class="text-[10px] font-sync text-white uppercase italic">Legends Never Die</p>
                 </div>
             </div>
         </div>
     </main>
 
-    <footer class="w-full py-16 text-center opacity-20 hover:opacity-100 transition-opacity">
-        <p class="text-[9px] font-sync tracking-[2em]">JON JON x FRIENDS // COLLECTIVE ACCESS 2026</p>
+    <footer class="w-full pt-12 pb-20 text-center flex flex-col items-center gap-4">
+        <div class="flex gap-10 opacity-20 font-mono text-[8px] tracking-[0.3em]">
+            <span>NODE_01: ONLINE</span>
+            <span>NODE_02: ONLINE</span>
+            <span>NODE_03: ONLINE</span>
+        </div>
+        <p class="text-[9px] font-sync tracking-[2em] opacity-30 mt-4 uppercase">Jon Jon x Friends // MMXXVI</p>
     </footer>
 
 </body>
