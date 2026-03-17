@@ -33,7 +33,6 @@
         }
         @keyframes scan { 0% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
 
-        /* Ticker Animation */
         @keyframes scroll { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
         .ticker { white-space: nowrap; animation: scroll 25s linear infinite; }
 
@@ -83,20 +82,21 @@
             
             <div class="glass p-8 bg-gradient-to-br from-blue-900/10 to-transparent">
                 <h3 class="font-sync text-[10px] mb-6 text-blue-400 tracking-widest uppercase italic">Group Metrics</h3>
-                <div class="grid grid-cols-2 gap-4 mb-6">
+                <div class="space-y-4 mb-6">
                     <div class="bg-white/5 p-3 rounded-lg border border-white/5">
-                        <p class="text-[9px] text-gray-500 font-bold uppercase">Status</p>
-                        <p class="text-lg font-sync text-green-400">LIVE</p>
+                        <p class="text-[9px] text-gray-500 font-bold uppercase">Uptime Schedule</p>
+                        <p class="text-sm font-sync text-white leading-tight mt-1">TUESDAYS</p>
+                        <p class="text-[10px] font-mono text-blue-300 opacity-70">Sometimes Thursdays</p>
+                        <p class="text-[10px] font-mono text-blue-300 opacity-70">Every other weekend</p>
                     </div>
                     <div class="bg-white/5 p-3 rounded-lg border border-white/5">
-                        <p class="text-[9px] text-gray-500 font-bold uppercase">Uptime</p>
-                        <p class="text-lg font-sync text-white">24/7</p>
+                        <p class="text-[9px] text-gray-500 font-bold uppercase">System Status</p>
+                        <p class="text-lg font-sync text-green-400 animate-pulse">ACTIVE</p>
                     </div>
                 </div>
-                <div class="font-mono text-[10px] text-gray-500 space-y-1">
+                <div class="font-mono text-[9px] text-gray-600 space-y-1 border-t border-white/5 pt-4">
                     <p>> FREQUENCY: 432Hz</p>
                     <p>> CORE: 999_OVO</p>
-                    <p>> REGION: GLOBAL_VR</p>
                 </div>
             </div>
         </div>
@@ -134,11 +134,11 @@
                 <div class="flex-grow space-y-4 font-mono">
                     <div class="p-4 bg-purple-900/10 rounded-lg border border-purple-500/20">
                         <p class="text-[9px] text-purple-400 mb-2">// PRIMARY_HANG</p>
-                        <a href="#" class="text-sm hover:text-purple-400 transition tracking-tighter block uppercase">01. MCDONALD'S</a>
+                        <a href="https://vrchat.com/home/world/wrld_f8d4e7d4-8d9e-4e8c-8d3e-7e9c8d3e7e9c" target="_blank" class="text-sm hover:text-purple-400 transition tracking-tighter block uppercase">01. MCDONALD'S</a>
                     </div>
                     <div class="p-4 bg-blue-900/10 rounded-lg border border-blue-500/20">
                         <p class="text-[9px] text-blue-400 mb-2">// UTILITY_SPACE</p>
-                        <a href="#" class="text-sm hover:text-blue-400 transition tracking-tighter block uppercase">02. OPTIMIZE BOX</a>
+                        <a href="https://vrchat.com/home/world/wrld_a1b2c3d4-e5f6-g7h8-i9j0-k1l2m3n4o5p6" target="_blank" class="text-sm hover:text-blue-400 transition tracking-tighter block uppercase">02. OPTIMIZE BOX</a>
                     </div>
                 </div>
                 <div class="mt-8 pt-6 border-t border-white/5 text-center">
