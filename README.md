@@ -34,12 +34,12 @@
 
         /* AUTO-SCROLLING GALLERY */
         .gallery-track {
-            display: flex; width: calc(300px * 10);
-            animation: scroll-gallery 25s linear infinite;
+            display: flex; width: calc(300px * 12);
+            animation: scroll-gallery 30s linear infinite;
         }
         @keyframes scroll-gallery {
             0% { transform: translateX(0); }
-            100% { transform: translateX(calc(-300px * 5)); }
+            100% { transform: translateX(calc(-300px * 6)); }
         }
 
         .glitch { animation: glitch 1s linear infinite; text-shadow: 2px 0 #ff00ff, -2px 0 #00ffff; }
@@ -81,12 +81,23 @@
 
     <section class="w-full py-10 overflow-hidden bg-white/5 border-y border-white/10 mb-12">
         <div class="gallery-track gap-6 px-4">
-            <img src="https://wallpapers.com/images/hd/juice-wrld-aesthetic-purple-0msh1h5s8q2r6l1q.jpg" class="w-[300px] h-[400px] object-cover rounded-2xl border border-purple-500/50 shadow-2xl">
-            <img src="https://i.pinimg.com/736x/8d/6d/4e/8d6d4e3e3b7b4b7b4b7b4b7b4b7b4b7b.jpg" class="w-[300px] h-[400px] object-cover rounded-2xl border border-blue-500/50 shadow-2xl">
-            <img src="https://i.pinimg.com/originals/99/9e/42/999e4288b48866a261a84f509e4f50a2.jpg" class="w-[300px] h-[400px] object-cover rounded-2xl border border-purple-500/50 shadow-2xl">
-            <img src="https://i.pinimg.com/736x/4c/8d/6d/4c8d6d4e3e3b7b4b7b4b7b4b7b4b7b4b.jpg" class="w-[300px] h-[400px] object-cover rounded-2xl border border-blue-500/50 shadow-2xl">
-            <div class="w-[300px] h-[400px] bg-gradient-to-br from-purple-900 to-yellow-600 rounded-2xl flex items-center justify-center p-6 text-center border border-white/20">
-                <p class="font-sync text-2xl font-black italic">999 <br> X <br> OVO</p>
+            <div class="w-[300px] h-[400px] flex-shrink-0 rounded-2xl border border-purple-500/30 overflow-hidden">
+                <img src="https://static.independent.co.uk/s3fs-public/thumbnails/image/2019/12/08/19/juice-wrld.jpg" class="w-full h-full object-cover">
+            </div>
+            <div class="w-[300px] h-[400px] flex-shrink-0 rounded-2xl border border-blue-500/30 overflow-hidden">
+                <img src="https://hips.hearstapps.com/hmg-prod/images/drake-gettyimages-1135833471.jpg" class="w-full h-full object-cover">
+            </div>
+            <div class="w-[300px] h-[400px] flex-shrink-0 rounded-2xl border border-purple-500/30 overflow-hidden">
+                <img src="https://images.complex.com/complex/images/c_fill,dpr_auto,f_auto,q_auto,w_1400/fl_lossy,pg_1/vclm70v6vky6ecl049qy/juice-wrld-999" class="w-full h-full object-cover">
+            </div>
+            <div class="w-[300px] h-[400px] flex-shrink-0 rounded-2xl border border-blue-500/30 overflow-hidden">
+                <img src="https://media.gq.com/photos/569e9999933ca32128766159/master/pass/drake-owl.jpg" class="w-full h-full object-cover">
+            </div>
+            <div class="w-[300px] h-[400px] flex-shrink-0 rounded-2xl border border-purple-500/30 overflow-hidden">
+                <img src="https://static.independent.co.uk/s3fs-public/thumbnails/image/2019/12/08/19/juice-wrld.jpg" class="w-full h-full object-cover">
+            </div>
+            <div class="w-[300px] h-[400px] flex-shrink-0 rounded-2xl border border-blue-500/30 overflow-hidden">
+                <img src="https://hips.hearstapps.com/hmg-prod/images/drake-gettyimages-1135833471.jpg" class="w-full h-full object-cover">
             </div>
         </div>
     </section>
@@ -99,17 +110,17 @@
         </div>
 
         <div class="glass p-6 text-center border-t-2 border-green-500">
-            <h3 class="font-sync text-[10px] mb-4 text-gray-500">SYSTEM HEALTH</h3>
+            <h3 class="font-sync text-[10px] mb-4 text-gray-500 uppercase">System Health</h3>
             <div class="text-4xl font-black text-green-400 mb-2 uppercase">Online</div>
-            <div class="text-[10px] font-mono text-gray-600 tracking-widest">UPTIME 99.9%</div>
+            <div class="text-[10px] font-mono text-gray-600 tracking-widest uppercase">Uptime 99.9%</div>
         </div>
 
         <div class="glass p-6 border-r-8 border-blue-600">
             <h3 class="font-sync text-[10px] mb-4 text-blue-400 uppercase">Uptime Session</h3>
-            <div class="space-y-2 font-mono text-[10px]">
-                <p>TUESDAYS ACTIVE</p>
-                <p>SOMETIMES THURSDAYS</p>
-                <p>EVERY OTHER WEEKEND</p>
+            <div class="space-y-2 font-mono text-[10px] uppercase">
+                <p>Tuesdays Active</p>
+                <p>Sometimes Thursdays</p>
+                <p>Every Other Weekend</p>
             </div>
         </div>
 
@@ -118,7 +129,7 @@
                 <div class="w-12 h-12 bg-purple-600 rounded-full flex items-center justify-center font-bold">JJ</div>
                 <div>
                     <p class="font-sync text-sm">Jon Jon</p>
-                    <p class="text-[10px] font-mono opacity-50">(JonnyM85)</p>
+                    <p class="text-[10px] font-mono opacity-50 uppercase">(JonnyM85)</p>
                 </div>
             </div>
         </div>
@@ -128,33 +139,33 @@
                 <div class="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center font-bold">AM</div>
                 <div>
                     <p class="font-sync text-sm leading-none mb-1">Aubrey D Graham</p>
-                    <p class="text-[10px] font-mono opacity-50">Co-Owner</p>
-                    <p class="text-[10px] font-mono opacity-50">Mikey</p>
+                    <p class="text-[10px] font-mono opacity-50 uppercase">Co-Owner</p>
+                    <p class="text-[10px] font-mono opacity-50 uppercase">Mikey</p>
                 </div>
             </div>
         </div>
 
         <div class="glass p-8 md:col-span-2 grid grid-cols-3 gap-4">
             <div class="text-center p-2 border border-white/5 rounded-lg flex flex-col justify-center">
-                <p class="text-[9px] font-mono text-purple-400 tracking-widest">01 HANG</p>
+                <p class="text-[9px] font-mono text-purple-400 tracking-widest uppercase">01 Hang</p>
                 <p class="text-[10px] font-sync uppercase">McDonald's</p>
             </div>
             <div class="text-center p-2 border border-white/5 rounded-lg flex flex-col justify-center">
-                <p class="text-[9px] font-mono text-blue-400 tracking-widest">02 UTILITY</p>
+                <p class="text-[9px] font-mono text-blue-400 tracking-widest uppercase">02 Utility</p>
                 <p class="text-[10px] font-sync uppercase">Optimize Box</p>
             </div>
             <div class="text-center p-2 border border-white/5 rounded-lg flex flex-col justify-center">
-                <p class="text-[9px] font-mono text-red-400 tracking-widest">03 REC</p>
+                <p class="text-[9px] font-mono text-red-400 tracking-widest uppercase">03 Rec</p>
                 <p class="text-[10px] font-sync uppercase">Among Us</p>
             </div>
         </div>
 
-        <div class="glass p-6 md:col-span-4 font-mono text-[10px] text-gray-500 h-32 overflow-hidden leading-relaxed">
-            <p>> BOOTING JON JON NEXUS...</p>
-            <p>> 999 JUICE WRLD DATABASE LOADED [VERIFIED]</p>
-            <p>> OVO SOUND LIBS LOADED [VERIFIED]</p>
-            <p>> SCANNING FOR NEGATIVITY... 0 FOUND</p>
-            <p>> SYSTEM STATUS: THE INNER CIRCLE IS LIVE.</p>
+        <div class="glass p-6 md:col-span-4 font-mono text-[10px] text-gray-500 h-32 overflow-hidden leading-relaxed uppercase">
+            <p>> Booting Jon Jon Nexus...</p>
+            <p>> 999 Juice Wrld Database Loaded</p>
+            <p>> OVO Sound Libs Loaded</p>
+            <p>> Scanning For Negativity... 0 Found</p>
+            <p>> System Status: The Inner Circle Is Live.</p>
         </div>
 
     </main>
