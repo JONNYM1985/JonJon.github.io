@@ -11,7 +11,7 @@
         .font-sync { font-family: 'Syncopate', sans-serif; }
         .font-mono { font-family: 'Space Mono', monospace; }
 
-        /* --- 1. THE 5-MINUTE COLOR DRIFT --- */
+        /* 1. THE 5-MINUTE COLOR DRIFT */
         .tropical-bg {
             position: fixed; inset: 0; z-index: -2;
             background: linear-gradient(to bottom, #0f0c29, #24243e);
@@ -22,62 +22,69 @@
             100% { background-color: #240b36; } 
         }
 
-        /* --- 2. SWAYING PALMS --- */
+        /* 2. SWAYING PALMS */
         .palm-silhouette { position: fixed; bottom: -50px; opacity: 0.15; z-index: -1; pointer-events: none; filter: blur(2px); }
         .palm-left { left: -5%; width: 40%; animation: sway 8s ease-in-out infinite; }
         .palm-right { right: -5%; width: 35%; animation: sway 10s ease-in-out infinite reverse; }
         @keyframes sway { 0%, 100% { transform: rotate(-2deg) translateY(0); } 50% { transform: rotate(3deg) translateY(-10px); } }
         
         .ocean-mist { position: fixed; inset: 0; z-index: -1; background: radial-gradient(circle at 50% 120%, rgba(0, 255, 255, 0.05) 0%, transparent 50%); animation: pulse-mist 10s infinite alternate; }
-        @keyframes pulse-mist { from { opacity: 0.2; } to { opacity: 0.5; } }
 
-        /* --- 3. THE CIRCLE LOGO FIX --- */
+        /* 3. LOGO CIRCLES (STABILIZED) */
         #overlay { position: fixed; inset: 0; background: #000; z-index: 9999; display: flex; align-items: center; justify-content: center; cursor: pointer; }
         #loading-screen { position: fixed; inset: 0; background: #000; z-index: 9998; display: none; flex-direction: column; align-items: center; justify-content: center; transition: opacity 1.5s ease; }
         @media (min-width: 768px) { #loading-screen { flex-direction: row; gap: 4rem; } }
 
         .logo-circle { 
-            width: 200px; height: 200px; 
+            width: 180px; height: 180px; 
             border-radius: 50%; 
-            border: 3px solid rgba(255, 255, 255, 0.1);
+            border: 3px solid rgba(255, 255, 255, 0.15);
             overflow: hidden;
             display: flex; align-items: center; justify-content: center;
-            background: rgba(0,0,0,0.5);
-            box-shadow: 0 0 40px rgba(188, 19, 254, 0.3);
+            background: #000;
+            box-shadow: 0 0 40px rgba(188, 19, 254, 0.2);
         }
         .juice-img { width: 100%; height: 100%; object-fit: cover; animation: pulse-logo 2s infinite; mix-blend-mode: screen; }
-        .ovo-img { width: 100%; height: 100%; object-fit: cover; animation: spin-logo 12s linear infinite; mix-blend-mode: screen; }
-        @keyframes pulse-logo { 0%, 100% { transform: scale(0.95); opacity: 0.7; } 50% { transform: scale(1.05); opacity: 1; } }
+        .ovo-img { width: 100%; height: 100%; object-fit: cover; animation: spin-logo 15s linear infinite; mix-blend-mode: screen; }
+        @keyframes pulse-logo { 0%, 100% { transform: scale(1); opacity: 0.8; } 50% { transform: scale(1.08); opacity: 1; } }
         @keyframes spin-logo { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 
-        /* --- 4. GALLERY CROP FIX --- */
+        /* 4. MAIN LAYOUT */
         #main-wrapper { opacity: 0; transition: opacity 2s ease-in-out; }
-        .glass { background: rgba(0, 0, 0, 0.5); backdrop-filter: blur(25px); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 1.5rem; }
-        .active-day { background: rgba(188, 19, 254, 0.2); border: 1px solid #bc13fe !important; color: #bc13fe; box-shadow: 0 0 25px rgba(188, 19, 254, 0.3); }
+        .glass { background: rgba(0, 0, 0, 0.65); backdrop-filter: blur(25px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 1.5rem; }
+        .active-day { background: rgba(188, 19, 254, 0.25); border: 1px solid #bc13fe !important; color: #bc13fe; box-shadow: 0 0 25px rgba(188, 19, 254, 0.3); }
 
         .ticker { white-space: nowrap; animation: ticker-move 35s linear infinite; }
         @keyframes ticker-move { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
         
         .gallery-track { display: flex; width: max-content; animation: scroll-gallery 60s linear infinite; }
         @keyframes scroll-gallery { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-        .gallery-item { width: 280px; height: 380px; flex-shrink: 0; border-radius: 1rem; border: 1px solid rgba(255, 255, 255, 0.1); overflow: hidden; cursor: pointer; transition: 0.4s; }
-        .gallery-item img { width: 100%; height: 100%; object-fit: cover; } /* FIXED CROPPING */
+        .gallery-item { width: 300px; height: 400px; flex-shrink: 0; border-radius: 1rem; border: 1px solid rgba(255, 255, 255, 0.1); overflow: hidden; }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; }
 
-        /* --- 5. MUSIC BAR & VISUALIZER --- */
-        .music-bar { position: fixed; bottom: 0; left: 0; right: 0; background: rgba(0, 0, 0, 0.9); backdrop-filter: blur(20px); border-top: 1px solid rgba(255, 255, 255, 0.1); padding: 15px 25px; display: flex; align-items: center; justify-content: space-between; z-index: 100; }
-        .live-dot { width: 8px; height: 8px; background: #ff0055; border-radius: 50%; margin-right: 12px; animation: blink 1.5s infinite; }
-        @keyframes blink { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.4; transform: scale(1.2); } }
-        
-        .visualizer { display: flex; align-items: flex-end; gap: 2px; height: 12px; margin-left: 15px; }
+        /* 5. LOCATION BOXES (FIXED SIZE) */
+        .location-card {
+            min-height: 140px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 1.5rem;
+            transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            background: rgba(255,255,255,0.03);
+        }
+        .location-card:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.3); transform: translateY(-5px); }
+
+        /* 6. MUSIC BAR */
+        .music-bar { position: fixed; bottom: 0; left: 0; right: 0; background: rgba(0, 0, 0, 0.95); backdrop-filter: blur(20px); border-top: 1px solid rgba(255, 255, 255, 0.1); padding: 15px 25px; display: flex; align-items: center; justify-content: space-between; z-index: 100; }
+        .visualizer { display: flex; align-items: flex-end; gap: 2px; height: 12px; }
         .bar { width: 3px; background: #00ffff; animation: equalize 1s ease-in-out infinite; }
-        .bar:nth-child(1) { height: 60%; animation-duration: 0.8s; }
-        .bar:nth-child(2) { height: 100%; animation-duration: 1.2s; }
-        .bar:nth-child(3) { height: 40%; animation-duration: 0.9s; }
         @keyframes equalize { 0%, 100% { transform: scaleY(0.5); } 50% { transform: scaleY(1); } }
 
         #easter-flash { position: fixed; inset: 0; z-index: 9000; opacity: 0; pointer-events: none; transition: 0.2s; }
         .flash-active { opacity: 0.4 !important; }
-        .btn-glow:hover { box-shadow: 0 0 40px rgba(188, 19, 254, 0.8); background: #bc13fe !important; color: white !important; }
     </style>
 </head>
 <body>
@@ -97,20 +104,16 @@
     </div>
 
     <div id="loading-screen">
-        <div class="logo-circle">
-            <img src="juice-999.jpg" class="juice-img">
-        </div>
-        <div class="flex flex-col items-center mx-10 my-8">
+        <div class="logo-circle"><img src="juice-999.jpg" class="juice-img"></div>
+        <div class="flex flex-col items-center mx-10 my-10">
             <div class="w-48 h-[2px] bg-white/10 relative"><div id="progress-bar" class="absolute inset-y-0 left-0 bg-cyan-400" style="width: 0%"></div></div>
             <p class="mt-6 font-mono text-[10px] tracking-[0.8em] text-cyan-400 uppercase">Synchronizing</p>
         </div>
-        <div class="logo-circle">
-            <img src="ovo-owl.png" class="ovo-img">
-        </div>
+        <div class="logo-circle"><img src="ovo-owl.png" class="ovo-img"></div>
     </div>
 
     <div id="main-wrapper">
-        <div class="w-full bg-black/40 backdrop-blur-md border-b border-white/10 py-3 overflow-hidden sticky top-0 z-50">
+        <div class="w-full bg-black/40 py-3 overflow-hidden sticky top-0 z-50 border-b border-white/5">
             <div class="ticker font-mono text-[10px] tracking-[0.5em] uppercase font-bold text-cyan-400 italic">999 x OVO // THE NEXUS // NO NEGATIVITY // LEGENDS NEVER DIE // </div>
         </div>
 
@@ -137,7 +140,7 @@
             <div class="glass p-6 text-center border-t-2 border-green-400">
                 <h3 class="font-sync text-[10px] mb-2 text-gray-500 uppercase">System Status</h3>
                 <div id="current-status" class="text-4xl font-black text-green-400 uppercase italic">Online</div>
-                <p id="status-subtext" class="text-[9px] font-mono text-gray-400 uppercase mt-2 italic tracking-widest">Active Protocol</p>
+                <p id="status-subtext" class="text-[9px] font-mono text-gray-600 uppercase mt-2 italic tracking-widest">Active Protocol</p>
             </div>
 
             <div class="glass p-6 border-r-4 border-purple-500 flex flex-col gap-3">
@@ -148,50 +151,56 @@
             </div>
 
             <div class="glass p-8 flex items-center gap-5 border border-white/5">
-                <div class="w-14 h-14 bg-gradient-to-tr from-purple-600 to-cyan-600 rounded-full flex items-center justify-center font-bold">JJ</div>
-                <div><p class="font-sync text-sm italic">Jon Jon</p><p class="text-[10px] font-mono text-purple-400 uppercase font-black">Owner</p></div>
+                <div class="w-14 h-14 bg-gradient-to-tr from-purple-600 to-indigo-600 rounded-full flex items-center justify-center font-bold text-lg">JJ</div>
+                <div>
+                    <p class="font-sync text-sm italic">Jon Jon</p>
+                    <p class="text-[10px] font-mono text-purple-400 uppercase font-black">Owner</p>
+                    <p class="text-[8px] font-mono opacity-50 uppercase mt-1">JonnyM85</p>
+                </div>
             </div>
 
             <div class="glass p-8 flex items-center gap-5 border border-white/5">
-                <div class="w-14 h-14 bg-gradient-to-tr from-blue-600 to-indigo-600 rounded-full flex items-center justify-center font-bold">AM</div>
-                <div><p class="font-sync text-sm italic">Aubrey Graham</p><p class="text-[10px] font-mono text-blue-400 uppercase font-black">Co-Owner</p></div>
+                <div class="w-14 h-14 bg-gradient-to-tr from-blue-600 to-indigo-600 rounded-full flex items-center justify-center font-bold text-lg">AM</div>
+                <div>
+                    <p class="font-sync text-sm italic">Aubrey Graham</p>
+                    <p class="text-[10px] font-mono text-blue-400 uppercase font-black">Co-Owner</p>
+                    <p class="text-[8px] font-mono opacity-50 uppercase mt-1">Mikey</p>
+                </div>
             </div>
 
             <div class="glass p-8 md:col-span-2 grid grid-cols-1 md:grid-cols-3 gap-6">
-                <a href="https://vrchat.com/home/world/wrld_6b77c061-a1bf-48eb-b107-c4d944490198/info" target="_blank" class="text-center p-4 border border-white/5 hover:border-purple-500 rounded-xl transition-all">
-                    <p class="text-[11px] font-sync uppercase italic text-white whitespace-nowrap">McDonald's</p>
-                    <p class="text-[8px] font-mono text-gray-500 uppercase mt-2">The Nexus Hangout</p>
+                <a href="https://vrchat.com/home/world/wrld_6b77c061-a1bf-48eb-b107-c4d944490198/info" target="_blank" class="location-card rounded-2xl">
+                    <p class="text-[11px] font-sync uppercase italic text-white tracking-widest">McDonald's</p>
+                    <p class="text-[8px] font-mono text-gray-500 uppercase mt-3">The Nexus Hangout</p>
                 </a>
-                <a href="https://vrchat.com/home/world/wrld_1a8b8684-3b19-4770-a4a7-288762f57b29/info" target="_blank" class="text-center p-4 border border-white/5 hover:border-blue-500 rounded-xl transition-all">
-                    <p class="text-[11px] font-sync uppercase italic text-white whitespace-nowrap">1's Optimized Box</p>
-                    <p class="text-[8px] font-mono text-gray-500 uppercase mt-2">Utility Zone</p>
+                <a href="https://vrchat.com/home/world/wrld_1a8b8684-3b19-4770-a4a7-288762f57b29/info" target="_blank" class="location-card rounded-2xl">
+                    <p class="text-[11px] font-sync uppercase italic text-white tracking-widest">1's Optimized Box</p>
+                    <p class="text-[8px] font-mono text-gray-500 uppercase mt-3">Utility Zone</p>
                 </a>
-                <a href="https://vrchat.com/home/world/wrld_dd036610-a246-4f52-bf01-9d7cea3405d7/info" target="_blank" class="text-center p-4 border border-white/5 hover:border-red-500 rounded-xl transition-all">
-                    <p class="text-[11px] font-sync uppercase italic text-white whitespace-nowrap">Among Us</p>
-                    <p class="text-[8px] font-mono text-gray-500 uppercase mt-2">Rec Zone</p>
+                <a href="https://vrchat.com/home/world/wrld_dd036610-a246-4f52-bf01-9d7cea3405d7/info" target="_blank" class="location-card rounded-2xl">
+                    <p class="text-[11px] font-sync uppercase italic text-white tracking-widest">Among Us</p>
+                    <p class="text-[8px] font-mono text-gray-500 uppercase mt-3">Rec Zone</p>
                 </a>
             </div>
         </main>
 
         <footer class="text-center pb-48">
-            <button onclick="window.open('https://vrchat.com/home/group/grp_e6ecca5a-828b-4706-9c23-db1723469436')" class="btn-glow bg-white text-black px-16 py-6 rounded-full font-sync text-lg font-bold uppercase italic transition-transform hover:scale-105">Join Collective</button>
+            <button onclick="window.open('https://vrchat.com/home/group/grp_e6ecca5a-828b-4706-9c23-db1723469436')" class="bg-white text-black px-16 py-6 rounded-full font-sync text-lg font-bold uppercase italic hover:scale-105 transition-transform shadow-[0_0_30px_rgba(255,255,255,0.2)]">Join Collective</button>
         </footer>
 
         <div class="music-bar">
             <div class="flex items-center">
-                <div class="live-dot"></div>
+                <div class="w-2 h-2 bg-red-600 rounded-full mr-3 animate-pulse"></div>
                 <div class="flex flex-col">
-                    <span class="text-[7px] font-sync text-gray-500 uppercase tracking-widest">Broadcasting Live</span>
-                    <div class="flex items-center">
-                        <span class="text-[11px] font-mono text-cyan-400 uppercase italic">999 x OVO: Tropical Paradox Sessions</span>
-                        <div class="visualizer">
-                            <div class="bar"></div>
-                            <div class="bar"></div>
-                            <div class="bar"></div>
-                        </div>
+                    <span class="text-[11px] font-mono text-cyan-400 uppercase italic">999 x OVO: Tropical Paradox Sessions</span>
+                    <div class="visualizer mt-1">
+                        <div class="bar" style="animation-duration: 0.8s"></div>
+                        <div class="bar" style="animation-duration: 1.2s"></div>
+                        <div class="bar" style="animation-duration: 0.9s"></div>
                     </div>
                 </div>
             </div>
+            <span class="hidden md:block text-[9px] font-mono text-gray-500 uppercase tracking-[0.3em]">Live Stream Active</span>
         </div>
     </div>
 
@@ -213,9 +222,12 @@
             const interval = setInterval(() => {
                 if (width >= 100) { 
                     clearInterval(interval); 
-                    setTimeout(() => { loadScreen.style.opacity = '0'; setTimeout(() => { loadScreen.style.display = 'none'; document.getElementById('main-wrapper').style.opacity = '1'; }, 1000); }, 500); 
-                } else { width += Math.random() * 8; progress.style.width = width + '%'; }
-            }, 100);
+                    setTimeout(() => { 
+                        loadScreen.style.opacity = '0'; 
+                        setTimeout(() => { loadScreen.style.display = 'none'; document.getElementById('main-wrapper').style.opacity = '1'; }, 1000); 
+                    }, 500); 
+                } else { width += Math.random() * 10; progress.style.width = width + '%'; }
+            }, 120);
         }
 
         function paradoxEffect() { const flash = document.getElementById('easter-flash'); flash.style.background = '#bc13fe'; flash.classList.add('flash-active'); setTimeout(() => flash.classList.remove('flash-active'), 300); }
