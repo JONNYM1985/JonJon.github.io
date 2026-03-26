@@ -2,66 +2,71 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cold Reality</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>The Void</title>
     <style>
-        * {
-            box-sizing: border-box;
+        /* Forces the entire page to be a non-scrollable, centered container */
+        html, body {
+            height: 100%;
             margin: 0;
             padding: 0;
-        }
-        body {
-            background-color: #020202;
-            color: #555;
-            font-family: 'Courier New', Courier, monospace;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            width: 100vw;
-            overflow: hidden;
-            text-align: center;
+            background-color: #030303;
+            overflow: hidden; /* Prevents accidental scrolling */
+            display: grid;
+            place-items: center; /* The ultimate centering trick */
         }
 
         .content-box {
             width: 85%;
-            max-width: 480px;
-            animation: flicker 4s linear infinite;
+            max-width: 420px;
+            text-align: center;
+            animation: glitch-fade 6s ease-in-out infinite;
         }
 
         h1 {
+            font-family: 'Courier New', Courier, monospace;
             font-weight: 100;
-            font-size: 0.9rem;
-            letter-spacing: 8px;
+            font-size: 0.8rem;
+            letter-spacing: 10px;
             color: #222;
             margin-bottom: 40px;
             text-transform: uppercase;
         }
 
         p {
-            line-height: 1.6;
-            margin-bottom: 25px;
-            font-size: 1rem;
+            font-family: 'Georgia', serif;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            font-size: 1.05rem;
             color: #666;
+            font-style: italic;
         }
 
         .names {
-            color: #333;
-            font-style: italic;
-            font-size: 0.85rem;
+            font-family: 'Courier New', Courier, monospace;
+            color: #3a3a3a;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            margin-top: 30px;
         }
 
-        .heavy {
-            color: #888;
+        .drug-context {
+            color: #444;
+            font-size: 0.9rem;
+            border-top: 1px solid #111;
+            padding-top: 20px;
+            margin-top: 20px;
         }
 
-        @keyframes flicker {
-            0%, 18%, 22%, 25%, 53%, 57%, 100% { opacity: 1; }
-            20%, 24%, 55% { opacity: 0.3; }
+        @keyframes glitch-fade {
+            0%, 100% { opacity: 0.2; filter: blur(2px); }
+            50% { opacity: 1; filter: blur(0px); }
         }
 
+        /* Mobile specific font sizing */
         @media (max-width: 480px) {
-            p { font-size: 0.9rem; }
+            p { font-size: 0.95rem; }
+            h1 { font-size: 0.75rem; letter-spacing: 6px; }
         }
     </style>
 </head>
@@ -71,28 +76,29 @@
         <h1>Jon Jon and Friends</h1>
         
         <p>
-            I tried to build a paradise, but I ended up just building a cage. 
-            Now I’m sitting in the back of the world, chasing a high just to forget how quiet it’s become. 
-            The pills don't fix the silence, they just make it feel farther away.
+            I bled into these lines of code until I had nothing left in my veins. 
+            I built a sanctuary for people who only wanted a place to leave behind.
         </p>
         
-        <p class="heavy">
-            Watching everyone leave while I’m still here holding the bottle. 
-            I gave my soul to this site, and now I’m just drowning in the code. 
-            I’m so far gone I don’t even recognize the person who built these walls.
+        <p>
+            Now I’m just staring at the wall, chasing a chemical numbness because the silence is a debt I can't pay. 
+            The pills don't bring the noise back; they just turn the ghosts into shadows. 
+            I’m drowning in a bottle of my own making.
         </p>
 
-        <p class="names">
-            Galaxia. Aubrey. Cookies. Xfood. <br>
-            I loved you all, but the ghosts are too loud now.
-        </p>
+        <div class="drug-context">
+            The lights are flickering, but nobody's home. <br>
+            I loved you all, but the high is finally wearing off.
+        </div>
 
-        <p style="color: #444; font-size: 0.8rem; margin-top: 50px;">
-            The lights are flickering out. <br>
-            JONNYM85 — FADED.
+        <div class="names">
+            GALAXIA • AUBREY • COOKIES • XFOOD
+        </div>
+
+        <p style="color: #1a1a1a; font-size: 0.7rem; margin-top: 40px; text-transform: uppercase; letter-spacing: 4px;">
+            JONNYM85 OFFICIALLY LOGS OFF FOR NOW.
         </p>
     </div>
 
 </body>
 </html>
-
