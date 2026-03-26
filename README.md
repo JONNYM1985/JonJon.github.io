@@ -167,7 +167,7 @@
             <div class="c-stamp">
                 <span style="display:block; font-size: 0.6rem; color: #222;">FILED & VERIFIED</span>
                 <span style="display:block; color: #444; margin-top: 5px; font-weight: bold;">TIME OF DEATH:</span>
-                <span style="color: #666; font-style: italic;">PERKY KILLED HIM.</span>
+                <span style="color: #666; font-style: italic;">TUESDAY, MARCH 24TH, 2026.</span>
             </div>
 
             <div class="close-btn" onclick="hideCert()">[ CLOSE FILE ]</div>
