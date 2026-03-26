@@ -31,9 +31,9 @@
             margin-bottom: 20px;
         }
 
-        .rip-header h2 {
+        .REST IN PEACE-header h2 {
             font-size: 3.5rem;
-            color: #4a0000; /* Deep Blood Red */
+            color: #FFFFFF; /* WHITE */
             letter-spacing: 10px;
             margin: 0;
         }
